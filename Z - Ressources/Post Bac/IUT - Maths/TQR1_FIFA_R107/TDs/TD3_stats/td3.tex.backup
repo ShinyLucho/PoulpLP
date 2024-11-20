@@ -1,0 +1,113 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.8cm}
+\setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{165mm}
+\setlength{\oddsidemargin}{0mm}
+\usepackage{eurosym}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\input{definitions}
+
+\newif\ifcorrection
+%\correctiontrue   %% avec correction
+\correctionfalse   %% sans correction
+
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S1)}
+\newcommand{\years}{2022-2023}
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer, S. Cartier}
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2022} 
+\TDHead{\universityname}{\deptname}{R1.07, \years}{\large TD3: Math\'ematiques financi\`eres et statistique descriptive}
+%-------------------------------------------------------------------
+
+
+\exost En 2000, Jean a reçu $80$\,\euro d'\'etrennes et depuis, ses étrennes augmentent chaque ann\'ee de $6$\,\euro. 
+Pour tout entier $n$, on note $u_n$ le montant des \'etrennes re\c{c}ues par Anne l'ann\'ee $2000+ n$. On a donc $u_0= 80$.
+  \begin{enumerate}
+    \item Calculer les \'etrennes qu'a reçues Anne en 2001, puis en 2002.
+    \item Donner la nature de la suite $(u_n)$. (On justifiera soigneusement et l'on pr\'ecisera les param\`etres.)
+    \item En déduire l'expression de $u_n$ en fonction de $n$.
+    \item On note $S_n$ la somme des \'etrennes re\c{c}ues par Anne de l'ann\'ee 2000 jusqu'à l'année $2000+ n$. On a donc $S_n= u_0+ u_1+ \cdots+ u_n$. Calculer $S_{15}$.
+  \end{enumerate}
+%   \emph{Formulaire.}~La somme $S$ des $n+ 1$ premiers termes d'une suite arithmétique $(u_n)$ est donnée par:
+%   \[
+%     S= u_0+ u_1+ \cdots+ u_n= (n+ 1)\frac{u_0+ u_n}{2}.
+%   \]
+% \end{exercise}
+
+
+\exost \`A la naissance de leur fils en 2011, des parents bloquent une somme d'argent afin de pouvoir financer d'\'eventuelles \'etudes \`a sa majorit\'e.
+La banque leur propose un placement à int\'er\^ets simples à $5$\,\% par an. Ils d\'ecident de simuler un placement de $5\,000$\,\euro. On note $u_n$ la somme disponible à l'ann\'ee $2011+ n$.
+  \begin{enumerate}
+    \item Donner $u_1$, $u_2$, $u_3$ et $u_4$.
+    \item Exprimer $u_{n+ 1}$ en fonction de $u_n$. Quelle est la nature de la suite $(u_n)$? (On préciser les paramètres.)
+    \item Calculer le taux d'évolution exprimé en pourcentage, arrondi au centième, du capital sur toute la durée du placement.
+    \item Finalement les parents déposent $10\,000$\,\geneuro, au lieu de $5\,000$. Quelle sera la somme disponible à la majorité de leur fils?
+  \end{enumerate}
+
+\exost Le g\'erant d'une petite boutique a relev\'e le nombre d'articles vendus par jour. Son relev\'e a porté sur les ventes des mois de Mars et Avril, ce qui correspond \`a $52$~jours de vente.
+Le relev\'e des observations quotidiennes est le suivant:
+  \begin{center}
+    \begin{tabular}{lllllllllllll}
+       7 & 13 & 8  & 10 & 9  & 12 & 10 & 8  & 9  & 10 & 6  & 14 & 7  \\
+      15 & 9  & 11 & 12 & 11 & 12 & 5  & 14 & 11 & 8  & 10 & 14 & 12 \\
+       5 & 7  & 13 & 12 & 16 & 11 & 9  & 11 & 11 & 12 & 12 & 15 & 14 \\
+       5 & 14 & 9  & 9  & 14 & 13 & 11 & 10 & 11 & 12 & 9  & 15 & 8
+    \end{tabular}
+  \end{center}
+  \begin{enumerate}
+    \item Quel est le caract\`ere \'etudi\'e? Pr\'eciser son type.
+    \item D\'eterminer les effectifs, fr\'equences, ECC, FCC, ECD et FCD.
+    \item Calculez l'esp\'erance, la variance ainsi que l'\'ecart-type de cette variable statistique.
+  \end{enumerate}
+  
+  
+\exost   Une entreprise de transport rel\`eve les temps de chaque pause des ses chauffeurs sur une semaine et compile ces données dans le tableau suivant:
+  \begin{center}
+    \begin{tabular}{|l|l|l|l|l|l|l|}
+      \hline
+      Durée de pause (minutes)  & [0; 10[ & [10; 30[ & [30; 50[ & [50; 60[ & [60; 90[ & [90; 120] \\
+      \hline
+      Effectif cumulé croissant &   105   &   508    &   709    &   877    &   903    &    912    \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \begin{enumerate}
+    \item Déterminer le caractère étudié. Préciser son type.
+    \item Combien de pauses de moins d'une heure ont-elles été prises?
+    \item Calculer le nombre de pauses durant entre $60$ et $90$~minutes qui ont été prises.
+    \item Déterminer le nombre de pauses de plus de $30$~minutes qui ont été prises.
+    \iten Déterminer la dur\'ee moyenne des pause (esp\'erance)
+  \end{enumerate}
+\end{exercise}
+  
+
+\end{document}
+
+% End Of File
+

@@ -1,0 +1,881 @@
+%% Copyright 2021 by Sébastien Cartier (sebastien.cartier@math.cnrs.fr)
+%%
+%% This file may be distributed and/or modified
+%%
+%% 1. under the LaTeX Project Public License and/or
+%% 2. under the GNU Public License.
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{scartier}
+
+%Variables g{\'e}n{\'e}rales
+\newif\if@ar \@arfalse
+\newif\if@be \@befalse
+\newif\if@cv \@cvfalse
+\newif\if@de \@detrue
+\newif\if@len \@lentrue
+\DeclareOption{article}{\@artrue\@defalse\@lenfalse}
+\DeclareOption{beamer}{\@betrue\@defalse\@lenfalse}
+\DeclareOption{resume}{\@cvtrue\@defalse\@lenfalse}
+
+%Variables de langue
+\newif\if@en \@enfalse
+\newif\if@fr \@frtrue
+\DeclareOption{english}{\@entrue\@frfalse}
+\DeclareOption{french}{}
+
+%Variables de longueur
+\newif\if@hea \@heafalse
+\newif\if@hei \@heifalse
+\newif\if@wid \@widfalse
+\DeclareOption{head}{\@heatrue}
+\DeclareOption{height}{\@heitrue}
+\DeclareOption{width}{\@widtrue}
+
+%Variables article
+\newif\if@cha \@chafalse
+\newif\if@sec \@secfalse
+\DeclareOption{chapter}{\@chatrue}
+\DeclareOption{section}{\@sectrue}
+
+%Variables beamer
+\newif\if@cam \@camfalse
+\newif\if@gra \@grafalse
+\newif\if@gre \@grefalse
+\newif\if@war \@warfalse
+\newif\if@sin \@sinfalse
+\DeclareOption{cambridge}{\@camtrue}
+\DeclareOption{gray}{\@gratrue}
+\DeclareOption{green}{\@gretrue}
+\DeclareOption{warsaw}{\@wartrue}
+\DeclareOption{singapore}{\@sintrue}
+
+%Variables resume
+\newif\if@ps \@psfalse
+\DeclareOption{ps-tricks}{\@pstrue}
+
+%Variables resume
+\newif\if@fl \@fltrue
+\newif\if@nl \@nltrue
+
+%Variables par d{\'e}faut
+\newif\if@au \@aufalse
+\newif\if@dm \@dmfalse
+\newif\if@ds \@dsfalse
+\newif\if@ep \@epfalse
+\newif\if@es \@esfalse
+\newif\if@fo \@fofalse
+\newif\if@pga \@pgafalse
+\newif\if@po \@pofalse
+\newif\if@td \@tdfalse
+\newif\if@tit \@titfalse
+\newif\if@tp \@tpfalse
+\DeclareOption{autre}{\@autrue\@tittrue}
+\DeclareOption{dm}{\@dmtrue\@tittrue}
+\DeclareOption{ds}{\@dstrue\@tittrue}
+\DeclareOption{examp}{\@eptrue\@tittrue}
+\DeclareOption{exams}{\@estrue\@tittrue}
+\DeclareOption{folio}{\@fotrue\@pgatrue}
+\DeclareOption{poly}{\@potrue\@pgatrue}
+\DeclareOption{td}{\@tdtrue\@tittrue}
+\DeclareOption{tp}{\@tptrue\@tittrue}
+
+\DeclareOption*{\PackageWarning{scartier}{Unknown option ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+%Packages g{\'e}n{\'e}raux
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern, microtype}
+\usepackage{latexsym, textcomp}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{array, tabularx, setspace, verbatim}
+\usepackage{epic}
+% \usepackage{xargs, xifthen}
+\usepackage{xifthen}
+\usepackage{colortbl, multirow}
+
+%Gestion des langues
+\if@en
+  \usepackage[english]{babel}
+  \usepackage[english]{varioref}
+\else
+  \usepackage[french]{babel}
+  \usepackage[french]{varioref}
+  \if@be
+    \uselanguage{French}
+    \languagepath{French}
+  \else
+    \frenchbsetup{StandardLists=true}
+  \fi
+\fi
+
+%Packages beamer et non beamer
+\if@be
+  \usepackage{pslatex}
+  \usepackage{sfmath}
+\else
+  \usepackage[pdftex]{hyperref}
+  \usepackage{pdfpages}
+  \usepackage{multicol}
+  \usepackage{fancyhdr, fancybox, float}
+  \usepackage{graphicx, pst-all, pb-diagram, variations}
+  \usepackage[all]{xy}
+  \usepackage{enumitem}
+  \if@fr
+    \setlist{noitemsep, topsep= 0pt}
+  \fi
+\fi
+
+%Packages ps-tricks
+\if@ps
+  \usepackage{pdftricks}
+  \begin{psinputs}
+    \usepackage{pst-plot, pst-text, pstricks, pst-tree, pstricks-add, pst-eucl}
+  \end{psinputs}
+\fi
+
+%Packages resume
+\if@cv
+  \usepackage{marvosym}
+  \usepackage{sfmath}
+  \usepackage{wasysym}
+\else
+  \usepackage{eurosym}
+\fi
+
+%Mise en page par d{\'e}faut
+\if@len
+  \usepackage[a4paper, centering]{geometry}
+  \if@hea
+    \geometry{includehead, includefoot, headheight= 13.6pt, footskip= 0cm}
+  \fi
+  \if@hei
+    \geometry{textheight= 24.7cm}
+  \fi
+  \if@wid
+    \geometry{textwidth= 17cm}
+  \fi
+\fi
+
+%Couleurs particulières
+\definecolor{scartiergreen}{RGB}{51, 149, 48}
+\definecolor{gltpurple}{HTML}{9C75AE}
+\definecolor{tcjgreen}{HTML}{DEDB00}
+\definecolor{iutblue}{HTML}{015291}
+\definecolor{iutorange}{HTML}{EF7E02}
+
+%Mise en page beamer
+\if@be
+  \newcommand*{\emphcolor}[1]{\def\@emphcolor{#1}} \emphcolor{blue}
+  \newcommand*{\emphacolor}[1]{\def\@emphacolor{#1}} \emphacolor{red}
+  \if@sin
+    \usetheme{Singapore}
+  \fi
+  \if@war
+    \usetheme{Warsaw}
+    \usecolortheme[named= iutblue]{structure}
+    \emphcolor{iutorange}
+  \fi
+  \if@cam
+    \usetheme{CambridgeUS}
+  \fi
+  \if@gre
+    \usecolortheme[named= scartiergreen]{structure}
+    \emphcolor{scartiergreen}
+  \fi
+  \if@gra
+    \usecolortheme[named= gray]{structure}
+  \fi
+\fi
+
+%Mise en page resume
+\if@cv
+  \usepackage[a4paper, textheight= 22.7cm, textwidth= 17cm]{geometry}
+  \parindent= 0pt
+  \newlength{\titlespace} \setlength{\titlespace}{2ex}
+  \newlength{\hcolwidth} \setlength{\hcolwidth}{0.137\textwidth}
+  \newlength{\sepcolwidth} \setlength{\sepcolwidth}{0.02\textwidth}
+  \newlength{\mcolwidth} \setlength{\mcolwidth}{\textwidth}
+  \addtolength{\mcolwidth}{-\sepcolwidth} \addtolength{\mcolwidth}{-\hcolwidth}
+  \newlength{\bulletwidth} \settowidth{\bulletwidth}{\textbullet\;\;}
+  \newlength{\listmcolwidth} \setlength{\listmcolwidth}{\mcolwidth}
+  \addtolength{\listmcolwidth}{-\bulletwidth}
+  \AtEndOfPackage{%
+    \hypersetup{%
+      colorlinks= true,%
+      linkcolor= black,%
+      urlcolor= urlcolor,%
+      citecolor= black,%
+    }%
+  }
+  \AtBeginDocument{%
+    \definecolor{urlcolor}{HTML}{015291}%
+    \definecolor{sectioncolor}{HTML}{015291}%
+    \definecolor{namecolor}{HTML}{015291}%
+    \sffamily%
+  }
+\fi
+\unitlength= 1cm
+
+%Titre resume
+\if@cv
+%   \newcommand{\contact}[1]{\def\@contact{#1}} \contact{}
+%   \newcommand*{\lignes}[1]{\def\@lignes{#1}} \lignes{}
+%   \newcommand*{\adresse}[1]{\def\@adresse{#1}}
+%   \newcommand*{\email}[1]{\def\@email{#1}}
+%   \newcommand*{\fax}[1]{\def\@fax{#1}}
+%  \newcommand*{\headsymbol}{%
+%    \if@fl%
+%    \else%
+%      \if@nl%
+%        \newline%
+%      \else%
+%        ~~\color{urlcolor}\textbullet~~%
+%        \@nltrue%
+%      \fi%
+%    \fi%
+%  }
+  \newcommand*{\info}[1]{\def\@info{#1}}
+  \newcommand*{\mobile}[1]{\def\@mobile{#1}}
+  \newcommand*{\nom}[1]{\def\@nom{#1}} \nom{S{\'e}bastien~Cartier}
+  \newcommand*{\telephone}[1]{\def\@telephone{#1}}
+  \newcommand*{\wpage}[1]{\def\@wpage{#1}}
+  \newcommand*{\adressesymbol}{\Letter}
+  \newcommand*{\emailsymbol}{{\normalfont\scriptsize\MVAt}}
+  \newcommand*{\faxsymbol}{{\normalfont\scriptsize\FAX}}
+  \newcommand*{\mobilesymbol}{{\normalfont\Mobilefone}}
+  \newcommand*{\sepsymbol}{{\normalfont\color{urlcolor}~~\textbullet~~}}
+  \newcommand*{\telephonesymbol}{{\normalfont\Telefon}}
+  \newcommand*{\wpagesymbol}{{\normalfont\LARGE\ComputerMouse}}
+%  \contact{%
+%    \ifthenelse{\isundefined{\@adresse}}{\ifx\@lines\else\@nltrue\fi}{%
+%      \addresssymbol~\@adresse\@flfalse%
+%      \ifx\@lines\else\@nltrue\fi%
+%    }%
+%    \ifthenelse{\isundefined{\@mobile}}{}{\headsymbol\mobilesymbol~\@mobile\@flfalse\@nlfalse}%
+%    \ifthenelse{\isundefined{\@telephone}}{}{\headsymbol\phonesymbol~\@telephone\@flfalse\@nlfalse}%
+%    \ifthenelse{\isundefined{\@fax}}{\@nltrue}{\headsymbol\faxsymbol~\@fax\@flfalse}%
+%    \ifthenelse{\isundefined{\@email}}{}{\headsymbol\emailsymbol~\emaillink{\@email}\@flfalse\@nlfalse}%
+%    \ifthenelse{\isundefined{\@wpage}}{}{\headsymbol\wpagesymbol~\url{\@wpage}}%
+%    \ifthenelse{\isundefined{\@info}}{}{\newline\medskip\@info}%
+%  }
+  \renewcommand{\maketitle}{%
+    \vspace*{\titlespace}%
+    \begin{flushright}%
+      \color{namecolor}\fontsize{38}{40}\selectfont\@nom%
+    \end{flushright}
+    \vspace*{\titlespace}%
+  }
+  \if@en
+    \title{\@nom's~R{\'e}sum{\'e}}
+  \else
+    \title{Curriculum~Vitæ~de~\@nom}
+  \fi
+\fi
+
+%Titre par d{\'e}faut
+\if@tit
+  \newcommand*{\ctitle}[1]{\def\@ctitle{#1}} \ctitle{\@title}
+  \newcommand*{\ctypenum}[1]{\def\@ctypenum{#1}}
+  \newcommand*{\typenum}[1]{\def\@typenum{#1}}
+  \newcommand*{\filiere}[1]{\def\@filiere{#1}} \filiere{}
+  \newcommand*{\matiere}[1]{\def\@matiere{#1}} \matiere{}
+  \newcommand*{\numero}[1]{\def\@numero{#1}} \numero{}
+  \newcommand*{\periode}[1]{\def\@periode{#1}}
+  \newcommand*{\annee}[1]{\def\@annee{#1}}
+  \newcommand*{\soustitre}[1]{\def\@soustitre{#1}}
+  \newcommand*{\titre}[1]{\def\@titre{#1}} \titre{}
+  \newcommand*{\etablissement}[1]{\def\@etablissement{#1}} \etablissement{}
+  \if@dm
+    \def\@type{Devoir~maison}
+    \def\@ctype{Corrig{\'e}~du~devoir~maison}
+    \def\@itype{DM}
+  \fi
+  \if@ds
+    \def\@type{Devoir~surveill{\'e}}
+    \def\@ctype{Corrig{\'e}~du~devoir~surveill{\'e}}
+    \def\@itype{DS}
+  \fi
+  \if@ep
+    \def\@type{Examen~de~premi{\`e}re~session}
+    \def\@ctype{Corrig{\'e}~de~l'examen~de~premi{\`e}re~session}
+    \def\@itype{\@type}
+  \fi
+  \if@es
+    \def\@type{Examen~de~seconde~session}
+    \def\@ctype{Corrig{\'e}~de~l'examen~de~seconde~session}
+    \def\@itype{\@type}
+  \fi
+  \if@td
+    \def\@type{TD}
+    \def\@ctype{Corrig{\'e}~du~\@type}
+    \def\@itype{\@type}
+  \fi
+  \if@tp
+    \def\@type{TP}
+    \def\@ctype{Corrig{\'e}~du~\@type}
+    \def\@itype{\@type}
+  \fi
+  \if@au
+    \renewcommand{\maketitle}[1]{%
+      \begin{flushleft}%
+        \nidt\hrulefill\par%
+        {\bfseries%
+          \@etablissement\hfill\@matiere\\%
+          \@filiere\ifthenelse{\isundefined{\@periode}}{}{~(\@periode\ifthenelse{\isundefined{\@annee}}{}{~\@annee})}\hfill\@author%
+        }%
+      \end{flushleft}%
+      \begin{center}%
+        {\Large\bfseries\@titre}\par%
+        \hrulefill%
+        \ifthenelse{\isundefined{\@soustitre}}{}{\newline{}\itshape\@soustitre}%
+      \end{center}%
+    }
+  \else
+    \AtBeginDocument{%
+      \subject{\@filiere.~\@itype~\@matiere}%
+      \ifthenelse{\equal{\@numero}{}}{%
+        \ifthenelse{\equal{\@titre}{}}{%
+          \title{\@type}%
+          \ctitle{\@ctype}%
+        }{%
+          \title{\@type~:~\@titre}%
+          \ctitle{\@ctype~:~\@titre}%
+        }%
+      }{%
+        \ifthenelse{\equal{\@titre}{}}{%
+          \title{\@type~\@numero}%
+          \ctitle{\@ctype~\@numero}%
+        }{%
+          \title{\@type~\@numero~:~\@titre}%
+          \ctitle{\@ctype~\@numero~:~\@titre}%
+        }%
+      }%
+    }
+    \renewcommand{\maketitle}[2][]{%
+      \raz%
+      \begin{flushleft}%
+        \hrulefill\par%
+        {\bfseries%
+          \@etablissement\hfill\@author\\%
+          \@filiere\ifthenelse{\isundefined{\@periode}}{}{~(\@periode\ifthenelse{\isundefined{\@annee}}{}{~\@annee})}\hfill\@matiere%
+        }%
+      \end{flushleft}%
+      \begin{center}%
+        {\Large\bfseries\ifthenelse{\equal{#2}{c}}{\@ctitle\ifthenelse{\isempty{#1}}{}{~(rattrapage)}}{\@title\ifthenelse{\isempty{#1}}{}{~(rattrapage)}}}\par%
+        \hrulefill%
+        \ifthenelse{\equal{#2}{c}}{}{\ifthenelse{\isundefined{\@soustitre}}{}{\newline{}\itshape\@soustitre}}%
+      \end{center}%
+    }
+  \fi
+\fi
+
+\if@pga
+  \newcommand*{\departement}[1]{\def\@departement{#1}} \departement{}
+  \newcommand*{\matiere}[1]{\def\@matiere{#1}}
+  \newcommand*{\numero}[1]{\def\@numero{#1}}
+  \newcommand*{\filiere}[1]{\def\@filiere{#1}}
+  \if@po
+    \def\@soustitre{\@filiere\ifthenelse{\isundefined{\@numero}}{}{~--~\@numero}}%
+  \fi
+  \if@fo
+    \def\@soustitre{\@filiere\ifthenelse{\isundefined{\@numero}}{}{~(\@numero)}~--~Fascicule~de~TD}%
+  \fi%
+  \AtBeginDocument{%
+    \renewcommand{\labelitemii}{${*}$}
+    \title{\@matiere}
+    \if@po
+      \subject{Polycopi{\'e}~de~cours~--~\@filiere}%
+    \fi
+    \if@fo
+      \subject{Fascicule~de~TD~--~\@matiere~--~\@filiere}%
+    \fi%
+  }
+  \renewcommand*{\maketitle}{%
+    \raz%
+    \thispagestyle{empty}
+    \begin{center}%
+      \includegraphics[height=1.5cm]{ueve_iut.png}\ifthenelse{\equal{\@departement}{glt}}{\hfill\includegraphics[height=1.5cm]{ueve_iut_glt.png}}{}\par%
+      \vstretch[3]%
+      {\color{iutblue}\Huge\bfseries\MakeUppercase{\@title}}\\%
+      {\color{iutorange}\hrulefill}\par%
+      \bigskip%
+      {\huge\@soustitre}\par%
+      \vstretch[5]%
+      \@author%
+      \cleardoublepage%
+    \end{center}%
+  }
+  \if@po
+    \pagestyle{fancy}
+    \fancypagestyle{plain}{\fancyhf{} \renewcommand{\headrulewidth}{0pt}}
+    \renewcommand{\chaptermark}[1]{\markboth{\chaptername~\thechapter.~#1}{}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection.~#1}{}}
+    \fancyhead[LE,RO]{\thepage}
+    \fancyhead[RE]{\leftmark} \fancyhead[LO]{\rightmark}
+    \fancyfoot{}
+  \fi
+\fi
+
+%Hypersetup
+\if@be
+\else
+  \renewcommand*{\author}[1]{\def\@author{#1}} \author{S.~Cartier}
+  \newcommand*{\keywords}[1]{\def\@keywords{#1}} \keywords{}
+  \newcommand*{\subject}[1]{\def\@subject{#1}} \subject{}
+  \renewcommand*{\title}[1]{\def\@title{#1}} \title{}
+  \AtBeginDocument{%
+    \hypersetup{%
+      pdfauthor={\@author},%
+      pdfkeywords={\@keywords},%
+      pdfsubject={\@subject},%
+      pdftitle={\@title},%
+      pdfcreator={PDFLaTeX},%
+      pdfproducer={PDFLaTeX}%
+    }%
+  }
+\fi
+
+%Commandes beamer
+\if@be
+  \AtBeginDocument{\setbeamertemplate{itemize items}[circle]}
+  \renewcommand<>{\emph}[2][]{\alt#3{\mathstyle{#1}{\textcolor{\@emphcolor}{#2}}}{#2}}
+  \newcommand<>{\empha}[2][]{\alt#3{\mathstyle{#1}{\textcolor{red}{#2}}}{#2}}
+\fi
+
+%Commandes resume
+\if@cv
+  \renewcommand*{\section}[1]{%
+    \medskip%
+    \begin{flushleft}{\Large\bfseries\color{sectioncolor}#1\vspace{-1ex}\\\hrulefill}\vspace{-1ex}\end{flushleft}%
+  }
+  \renewcommand*{\subsection}[1]{%
+    \begin{tabular}{@{}p{\hcolwidth}@{\hspace{\sepcolwidth}}p{\mcolwidth}@{}}%
+      &{\large\bfseries\color{sectioncolor}#1}%
+    \end{tabular}%
+%     \vspace{1ex}%
+  }
+  \newcommand*{\cvline}[2]{%
+    \begin{tabular}{@{}p{\hcolwidth}@{\hspace{\sepcolwidth}}p{\mcolwidth}@{}}%
+      \raggedleft{\small#1}&{#2}%
+    \end{tabular}%
+    \vspace{0.25ex}%
+  }
+  \newcommand*{\cvmline}[2]{\cvline{#1}{\begin{minipage}[t]{\mcolwidth}#2\end{minipage}\vspace{0.25ex}}}
+  \newcommand{\cvlist}[1]{\cvline{}{#1}}
+  \newcommand{\cvpoint}[1]{\cvline{$\bullet$}{#1}}
+  \newcommand*{\cvmpoint}[1]{\cvline{$\bullet$}{\begin{minipage}[t]{\mcolwidth}#1\end{minipage}\vspace{0.25ex}}}
+  \newcommand*{\cvlistitem}[2][\textbullet{}]{%
+    \cvline{}{#1~\begin{minipage}[t]{\listmcolwidth}#2\end{minipage}}%
+  }
+  \newcommand*{\cventry}[6]{%
+    \cvline{#1}{{\bfseries#2}%
+    \ifx#3\else{,\ {\slshape#3}}\fi%
+    \ifx#4\else{,\ #4}\fi%
+    \ifx#5\else{,\ #5}\fi.%
+    \ifx#6\else{\newline{}\begin{minipage}[t]{\linewidth}\small#6.\end{minipage}}\fi}%
+  }
+\fi
+
+%Commandes par d{\'e}faut
+\if@de
+  \newcommand*{\exoskip}{\m{}\par}
+  \newcommand{\cleardoublepageempty}{%
+    \if@twoside%
+      \clearpage%
+      \ifodd\c@page%
+      \else%
+        \thispagestyle{empty}\null%
+        \clearpage%
+      \fi%
+    \fi%
+  }
+  \newcommand*{\raz}{%
+    \cleardoublepageempty%
+    \setcounter{page}{1}%
+    \setcounter{exercise}{0}%
+    \setcounter{equation}{0}%
+    \setcounter{qcm}{0}%
+}
+\fi
+
+%Commandes g{\'e}n{\'e}rales
+\newcommand{\mathstyle}[2]{%
+  \ifthenelse{\equal{#1}{ord}}{\mathord{#2}}{%
+    \ifthenelse{\equal{#1}{op}}{\mathop{#2}}{%
+      \ifthenelse{\equal{#1}{bin}}{\mathbin{#2}}{%
+        \ifthenelse{\equal{#1}{rel}}{\mathrel{#2}}{%
+          \ifthenelse{\equal{#1}{open}}{\mathopen{#2}}{%
+            \ifthenelse{\equal{#1}{close}}{\mathclose{#2}}{%
+              \ifthenelse{\equal{#1}{punct}}{\mathpunct{#2}}{%
+                \ifthenelse{\equal{#1}{inner}}{\mathinner{#2}}{#2}%
+              }%
+            }%
+          }%
+        }%
+      }%
+    }%
+  }%
+}
+
+\newcommand*{\sff}[1] {{\sffamily#1}}
+
+\newcommand*{\nidt}{\noindent}
+\newcommand*{\dst}{\displaystyle}
+\newcommand*{\tst}{\textstyle}
+\newcommand*{\sst}{\scriptstyle}
+\newcommand*{\ssst}{\scriptscriptstyle}
+\newcommand*{\fns}{\footnotesize}
+\newcommand*{\m}[1]{\mbox{#1}}
+\newcommand*{\ov}[1]{\overline{#1}}
+\newcommand*{\wh}[1]{\widehat{#1}}
+\newcommand*{\wt}[1]{\widetilde{#1}}
+\newcommand*{\transp}[1]{#1^{\text{t}}}
+
+\newcommand*{\esp}{\vspace*{0.5ex}}
+\newcommand*{\espf}{\vspace*{1ex}}
+\newcommand*{\fracheight}{\vphantom{$\dfrac{M^M}{p_p}$}} %\newcommand*{\fracheight}{\rule[-0.9em]{0em}{2.45em}}
+\newcommand*{\hstretch}[1][1]{\hspace{\stretch{#1}}}
+\newcommand*{\vstretch}[1][1]{\vspace{\stretch{#1}}}
+
+\newcommand*{\insertpage}{\newpage\thispagestyle{empty}\m{}\newpage}
+
+\newcommand*{\nline}{\vline\hspace*{0.5ex}\vline}
+\newcommand*{\rline}{\\\hline}
+\newcommand*{\zline}{\hspace*{0.54ex}\vline\hspace*{-0.62ex}0}
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+
+\newcommand*{\ligne}[2]{\qbezier(#1)(#1)(#2)}
+
+% \newcommand*{\1}{\textbf{1}}
+\newcommand*{\ii}{\infty}
+\newcommand*{\del}{\nabla}
+\newcommand*{\conj}{\mathstyle{op}{\text{\fns$\wedge$}}}
+\newcommand*{\disj}{\mathstyle{op}{\text{\fns$\vee$}}}
+\renewcommand*{\epsilon}{\varepsilon}
+\renewcommand*{\phi}{\varphi}
+\newcommand*{\paral}{\mathord{/\hspace*{-0.5ex}/}}
+\renewcommand*{\subsetneq}{\varsubsetneq}
+
+\newcommand*{\Aa}{\mathcal{A}}
+\newcommand*{\Bb}{\mathcal{B}}
+\newcommand*{\C}{\mathbb{C}}
+\newcommand*{\Cc}{\mathcal{C}}
+\newcommand*{\dd}{\text{\normal{d}}}
+\newcommand*{\D}{\mathbb{D}}
+\newcommand*{\Dd}{\mathcal{D}}
+\newcommand*{\E}{\mathbb{E}}
+\newcommand*{\Ee}{\mathcal{E}}
+\newcommand*{\F}{\mathbb{F}}
+\newcommand*{\Ff}{\mathcal{F}}
+\newcommand*{\Gg}{\mathcal{G}}
+\renewcommand*{\H}{\mathbb{H}}
+\newcommand*{\Hh}{\mathcal{H}}
+\renewcommand*{\i}{\imath}
+\newcommand*{\I}{\mathbb{I}}
+\newcommand*{\Ii}{\mathcal{I}}
+\renewcommand*{\j}{\jmath}
+\newcommand*{\K}{\mathbb{K}}
+\renewcommand*{\l}{\ell}
+\renewcommand*{\L}{\mathbb{L}}
+\newcommand*{\Ll}{\mathcal{L}}
+\newcommand*{\M}{\mathbb{M}}
+\newcommand*{\Mm}{\mathcal{M}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\Nn}{\mathcal{N}}
+\renewcommand*{\P}{\mathbb{P}}
+\newcommand*{\Pp}{\mathcal{P}}
+\newcommand*{\Q}{\mathbb{Q}}
+\newcommand*{\R}{\mathbb{R}}
+\newcommand*{\Rr}{\mathcal{R}}
+\renewcommand*{\S}{\mathbb{S}}
+\newcommand*{\Ss}{\mathcal{S}}
+\newcommand*{\T}{\mathbb{T}}
+\newcommand*{\Tt}{\mathcal{T}}
+\newcommand*{\U}{\mathbb{U}}
+\newcommand*{\Uu}{\mathcal{U}}
+\newcommand*{\V}{\mathbb{V}}
+\newcommand*{\Vv}{\mathcal{V}}
+\newcommand*{\Ww}{\mathcal{W}}
+\newcommand*{\Z}{\mathbb{Z}}
+
+\newcommand*{\arXiv}{\text{arXiv}}
+\DeclareMathOperator{\Nil}{Nil}
+\DeclareMathOperator{\Sol}{Sol}
+\DeclareMathOperator{\vol}{vol}
+
+\newcommand*{\lp}{\left(}
+\newcommand*{\rp}{\right)}
+\newcommand*{\lc}{\left[}
+\newcommand*{\rc}{\right]}
+\newcommand*{\lci}{\left]}
+\newcommand*{\rci}{\right[}
+\newcommand*{\lac}{\left\{}
+\newcommand*{\rac}{\right\}}
+\newcommand*{\lan}{\langle}
+\newcommand*{\ran}{\rangle}
+\newcommand*{\lb}{\left|}
+\newcommand*{\rb}{\right|}
+\newcommand*{\lr}{\left.}
+\newcommand*{\rr}{\right.}
+
+\renewcommand*{\leq}{\leqslant}
+\renewcommand*{\geq}{\geqslant}
+
+\renewcommand*{\a}{\forall}
+\newcommand*{\e}{\exists}
+\newcommand*{\eu}{\e!}
+\newcommand*{\nin}{\not\in}
+\newcommand*{\nsubset}{\not\subset}
+\newcommand*{\impl}{\Rightarrow}
+\newcommand*{\Impl}{\ \Longrightarrow\ }
+\newcommand*{\lpmi}{\Leftarrow}
+\newcommand*{\Lpmi}{\ \Longleftarrow\ }
+\newcommand*{\eq}{\Leftrightarrow}
+\newcommand*{\Eq}{\ \Longleftrightarrow\ }
+\newcommand*{\into}{\rightarrow}
+\newcommand*{\otni}{\leftarrow}
+\newcommand*{\inject}{\hookleftarrow}
+\newcommand*{\tcejni}{\hookrightarrow}
+\newcommand*{\xmapsto}[2]{\shortmid\!\xrightarrow[#1]{#2}}
+
+\newcommand*{\deter}[2]{\lb\begin{array}{@{}*{#1}{c}@{}}#2\end{array}\rb}
+\newcommand*{\der}[2][]{\frac{\partial#1}{\partial#2}}
+\newcommand*{\interrow}[2]{\multirow{#1}{*}{\sst#2}}
+\newcommand*{\Lim}[2]{\lim_{#1\into#2}}
+\newcommand*{\dLim}[2]{\displaystyle\lim_{#1\into#2}}
+\renewcommand*{\matrix}[2]{\lp\begin{array}{@{}*{#1}{c}@{}}#2\end{array}\rp}
+\newcommand*{\matrixext}[3][1]{\lp\begin{array}{@{}*{#2}{c}|*{#1}{c}@{}}#3\end{array}\rp}
+\newcommand*{\norm}[1]{\lb\!\lb#1\rb\!\rb}
+\newcommand*{\pint}{\lrcorner}
+\newcommand*{\pres}[1]{\ \text{à}\ #1\ \text{près}}
+\newcommand*{\st}[1]{%
+  \ifthenelse{\equal{#1}{}}{\mathrel{|}}{%
+    \ifthenelse{\equal{#1}{big}}{\mathrel{\big{|}}}{%
+      \ifthenelse{\equal{#1}{Big}}{\mathrel{\Big{|}}}{%
+        \ifthenelse{\equal{#1}{bigg}}{\mathrel{\bigg{|}}}{%
+          \ifthenelse{\equal{#1}{Bigg}}{\mathrel{\Bigg{|}}}
+        }%
+      }%
+    }%
+  }
+}
+\newcommand*{\tend}[2]{\xrightarrow[#1\into#2]{}}
+\newcommand*{\vect}[1]{\overrightarrow{#1}}
+
+\newcommand*{\modif}[1]{{\color{red}#1}}
+\newcommand*{\siecle}[1]{\ifnum#1=1\bsc{\romannumeral#1}\ier\else\bsc{\romannumeral#1}\ieme\fi}
+\newcommand{\noreffootnote}[1]{%
+  \begingroup%
+  \renewcommand{\thefootnote}{}%
+  \begin{NoHyper}\footnote{#1}\end{NoHyper}%
+  \addtocounter{\thefootnote}{-1}%
+  \endgroup%
+}
+
+\let\div\relax \let\Im\div \let\mod\div \let\Re\div
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\com}{com}
+\DeclareMathOperator{\cont}{cont}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\cycle}{cycle}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\div}{div}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Me}{Me}
+\DeclareMathOperator{\mod}{\;mod}
+\DeclareMathOperator{\Mo}{Mo}
+\DeclareMathOperator{\non}{non}
+\DeclareMathOperator{\ord}{ordre}
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\var}{var}
+\DeclareMathOperator{\Vect}{Vect}
+
+\if@en
+  \DeclareMathOperator{\argcosh}{argcosh}
+  \DeclareMathOperator{\argsinh}{argsinh}
+  \DeclareMathOperator{\argtanh}{argtanh}
+  \DeclareMathOperator{\rk}{rank}
+  \DeclareMathOperator{\rot}{curl}
+  \DeclareMathOperator{\sign}{sign}
+\else
+  \let\cosh\relax \let\sinh\cosh \let\tanh\cosh \let\gcd\cosh \let\lcm\cosh
+  \DeclareMathOperator{\cosh}{ch}
+  \DeclareMathOperator{\sinh}{sh}
+  \DeclareMathOperator{\tanh}{th}
+  \DeclareMathOperator{\argcosh}{argch}
+  \DeclareMathOperator{\argsinh}{argsh}
+  \DeclareMathOperator{\argtanh}{argth}
+  \DeclareMathOperator{\gcd}{pgcd}
+  \DeclareMathOperator{\lcm}{ppcm}
+  \DeclareMathOperator{\rk}{rg}
+  \DeclareMathOperator{\rot}{rot}
+  \DeclareMathOperator{\sign}{signe}
+\fi
+
+%Th{\'e}or{\`e}mes et d{\'e}finitions
+\if@be
+  \newenvironment<>{tonotice}%
+    {\begin{actionenv}#1\begin{itemize}\setbeamertemplate{itemize items}[triangle]\itshape}%
+    {\end{itemize}\end{actionenv}}
+  \newenvironment<>{paragraph}[1]%
+    {\begin{actionenv}#2\textsc{#1}\par}%
+    {\end{actionenv}\vfill}
+  \theoremstyle{plain}
+  \newtheorem{proposition}{Proposition}
+  \if@en
+    \newtheorem{remark}{Remark}
+%     \newtheorem{example}{Example}
+  \else
+    \newtheorem{remark}{Remarque}
+%     \newtheorem{example}{Exemple}
+  \fi
+\else
+  \renewcommand*{\proofname}[1]{\def\@proofname{#1}}
+  \if@en
+    \proofname{Proof}
+    \newenvironment{introtheorem}[2][]{\par%
+      \normalfont\trivlist%
+      \item[\bfseries\hskip\labelsep{\ifthenelse{\equal{#1}{}}{Theorem}{#1}}~\ref{#2}.]%
+      \itshape\ignorespaces%
+    }{\endtrivlist\@endpefalse}
+    \theoremstyle{definition}
+    \if@cha
+      \newtheorem{definition}{Definition}[chapter]
+    \else
+      \if@sec
+        \newtheorem{definition}{Definition}[section]
+      \else
+        \newtheorem{definition}{Definition}
+      \fi
+    \fi
+    \newtheorem*{definition*}{Definition}
+    \newtheorem{example}[definition]{Example}
+    \newtheorem*{example*}{Example}
+    \newtheorem{exercise}{Exercise}
+    \newtheorem{exples}[definition]{Examples}
+    \newtheorem*{exples*}{Examples}
+    \newtheorem*{hypothesis}{Hypothesis}
+    \newtheorem{lesson}{Lesson question}
+    \newtheorem*{lesson*}{Lesson question}
+    \newtheorem{problem}[exercise]{Problem}
+    \newtheorem*{problem*}{Problem}
+    \newtheorem{remark}[definition]{Remark}
+    \newtheorem*{remark*}{Remark}
+    \newtheorem{rmks}[definition]{Remarks}
+    \newtheorem*{rmks*}{Remarks}
+    \theoremstyle{plain}
+    \newtheorem{algorithm}[definition]{Algorithm}
+    \newtheorem*{algorithm*}{Algorithm}
+    \newtheorem{corollary}[definition]{Corollary}
+    \newtheorem*{corollary*}{Corollary}
+    \newtheorem{lemma}[definition]{Lemma}
+    \newtheorem*{lemma*}{Lemma}
+    \newtheorem*{methodology}{Methodology}
+    \newtheorem{proposition}[definition]{Proposition}
+    \newtheorem*{proposition*}{Proposition}
+    \newtheorem{theorem}[definition]{Theorem}
+    \newtheorem*{theorem*}{Theorem}
+  \fi
+  \if@fr
+    \proofname{Preuve}
+    \newenvironment{introtheorem}[2][]{\par%
+      \normalfont\trivlist%
+      \item[\bfseries\hskip\labelsep{\ifthenelse{\equal{#1}{}}{Th{\'e}or{\`e}me}{#1}}~\ref{#2}.]%
+      \itshape\ignorespaces%
+    }{\endtrivlist\@endpefalse}
+    \theoremstyle{definition}
+    \if@cha
+      \newtheorem{definition}{D{\'e}finition}[chapter]
+    \else
+      \if@sec
+        \newtheorem{definition}{D{\'e}finition}[section]
+      \else
+        \newtheorem{definition}{D{\'e}finition}
+      \fi
+    \fi
+    \newtheorem*{definition*}{D{\'e}finition}
+    \newtheorem{example}[definition]{Exemple}
+    \newtheorem*{example*}{Exemple}
+    \newtheorem{exercise}{Exercice}
+    \newtheorem{exples}[definition]{Exemples}
+    \newtheorem*{exples*}{Exemples}
+    \newtheorem*{hypothesis}{Hypoth{\`e}se}
+    \newtheorem{lesson}{Question de cours}
+    \newtheorem*{lesson*}{Question de cours}
+    \newtheorem{problem}[exercise]{Probl{\`e}me}
+    \newtheorem*{problem*}{Probl{\`e}me}
+    \newtheorem{remark}[definition]{Remarque}
+    \newtheorem{caution}[definition]{Attention}
+    \newtheorem*{remark*}{Remarque}
+    \newtheorem*{caution*}{Attention}
+    \newtheorem{rmks}[definition]{Remarques}
+    \newtheorem*{rmks*}{Remarques}
+    \theoremstyle{plain}
+    \newtheorem{algorithm}[definition]{Algorithme}
+    \newtheorem*{algorithm*}{Algorithme}
+    \newtheorem{corollary}[definition]{Corollaire}
+    \newtheorem*{corollary*}{Corollaire}
+    \newtheorem{lemma}[definition]{Lemme}
+    \newtheorem*{lemma*}{Lemme}
+    \newtheorem*{methodology}{M{\'e}thodologie}
+    \newtheorem{proposition}[definition]{Proposition}
+    \newtheorem*{proposition*}{Proposition}
+    \newtheorem{theorem}[definition]{Th{\'e}or{\`e}me}
+    \newtheorem*{theorem*}{Th{\'e}or{\`e}me}
+    \newenvironment{examexercise}[2][]{\refstepcounter{exercise}\textbf{EXERCICE~\theexercise\ifthenelse{\isempty{#1}}{}{~(#1)}.\hfill#2}\par}{\bigskip}
+  \fi
+  \theoremstyle{definition}
+  \newtheorem{application}[definition]{Application}
+  \newtheorem*{application*}{Application}
+  \newtheorem{apps}[definition]{Applications}
+  \newtheorem*{apps*}{Applications}
+  \newtheorem{qcm}{Question}
+  \newtheorem{question}{}[exercise] \renewcommand*{\thequestion}{\arabic{question}}
+  \newtheorem{subquestion}{}[question] \renewcommand*{\thesubquestion}{\alph{subquestion}}
+  \newenvironment{applications}[1][]{\begin{apps}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{apps}}
+  \newenvironment{applications*}[1][]{\begin{apps*}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{apps*}}
+  \newenvironment{examples}[1][]{\begin{exples}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{exples}}
+  \newenvironment{examples*}[1][]{\begin{exples*}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{exples*}}
+  \newenvironment{exercise*}[1][]{\begin{exercise}[#1]\exoskip}{\end{exercise}}
+  \newenvironment{remarks}[1][]{\begin{rmks}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{rmks}}
+  \newenvironment{remarks*}[1][]{\begin{rmks*}[#1]\m{}\begin{enumerate}[leftmargin=*]}{\end{enumerate}\end{rmks*}}
+  \renewenvironment{proof}[1][]{\par%
+    \normalfont\trivlist%
+    \item[\hskip\labelsep{\itshape\@proofname}\ifx#1\else{~(#1)}\fi.]%
+    \ignorespaces%
+  }{%
+    \hfill~${\square}$%
+    \endtrivlist\@endpefalse%
+  }
+\fi
+
+\newlength{\parindentval}\setlength{\parindentval}{\parindent}
+
+\newcounter{version} \renewcommand*{\theversion}{\Alph{version}}
+\newcommand*{\version}[1][]{%
+  \raz%
+  \setcounter{qcm}{0}%
+  \refstepcounter{version}%
+  \begin{center}%
+    {\Large\bfseries%
+    Sujet~\theversion\ifthenelse{\isempty{#1}}{}{~(#1)}\par%
+    \hrulefill}%
+  \end{center}%
+}
+
+
+\newenvironment{code}{\sffamily}{}
+% \newenvironment{centertabular}[2]{\begin{center}\begin{tabularx}{#1}{#2}}{\end{tabularx}\end{center}}
+
+\endinput

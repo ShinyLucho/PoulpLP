@@ -1,0 +1,212 @@
+\documentclass[a4paper, twoside, 11pt]{article}
+
+\usepackage[td, width, height]{scartier}
+
+\author{D. Fourer, L. Lagon (merci \`a S. Cartier)}
+\etablissement{IUT d'\'Evry Val d'Essonne}
+\filiere{Département TCJ}
+\matiere{Ressources et culture numériques 1}
+\numero{5}
+\titre{Utilisation basique d'un tableur}
+
+\hypersetup{colorlinks, urlcolor=[rgb]{0.0039 0.3216 0.5686}, linkcolor= black}
+
+\begin{document}
+
+\maketitle{}
+
+\begin{center}
+  \begin{tabular}{|@{\qquad}c@{\qquad}|}
+  \hline
+  \\
+  \begin{minipage}{0.8\linewidth}
+    \textbf{Consignes}: %on renommera le fichier \sff{tcj-f?-r102\_tp5-tableur1\_nom.ods} en remplaçant le libellé \og \sff{nom} \fg\ par son nom (de famille).
+    Creer au minimum \emph{une feuille (onglet) par exercice}.
+  \end{minipage} \\
+  \\
+  \hline
+  \end{tabular}
+\end{center}
+\medskip
+
+\begin{exercise}[Entrer des valeurs ou des formules]
+  On s'intéresse ici au fait qu'un tableur interprète systématiquement toute saisie, selon les caractères ou le format de la saisie.
+  \begin{enumerate}
+    \item \textit{Mise en forme automatique.} Dans les cellules \verb+B2+ à \verb+B6+, saisir successivement:
+    \begin{center}
+      \verb+Info+, \quad \verb+24/4+, \quad \verb+43+, \quad \verb+37,5+ \quad et \quad \verb+37.5+.
+    \end{center}
+    Décrire et analyser la mise en forme du tableur pour chaque saisie. Que peut-on en conclure?
+    \item \textit{Formules.} Dans les cellules \verb+E2+ à \verb+E7+, saisir successivement:
+    \begin{center}
+      \verb-2+5-, \quad \verb+24/4+, \quad \verb+E2+, \quad \verb-=2+5-, \quad \verb+=24/4+ \quad et \quad \verb+=E2+.
+    \end{center}
+    Comment interpréter l'action du symbole \verb+=+?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Références relatives et absolues]
+  Dans les cellules \verb+A1+ à \verb+D2+, saisir les chiffres de $1$ à $8$.
+  \begin{enumerate}
+    \item Dans les cellules \verb+B5+ à \verb+B8+, saisir les formules suivantes:
+    \begin{center}
+      \verb-=A1+A2-, \quad \verb+=A1-$A2+, \quad \verb+=A1*A$2+, \quad et \quad \verb+=A1/$A$2+.
+    \end{center}
+    Le symbole \verb+$+ modifie-t-il l'exécution des formules?
+    \item Copier-coller les cellules \verb+B5+ à \verb+B8+ dans les cellules \verb+D6+ à \verb+D9+. Comment sont affectées les formules?
+    \item Conclure quant au rôle du symbole \verb+$+ dans la différenciation des références relatives et absolues.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Application]
+  Une entreprise rémunère ses trois représentants --~nommés Albert, b\'en\'edicte et Camille~-- en leur attribuant:
+  \begin{itemize}
+    \item un salaire fixe de $950$\,\geneuro\ pour Albert, $860$\,\geneuro\ pour b\'en\'edicte et $1\,000$\,\geneuro\ pour Camille;
+    \item une commission représentant $2$\,\% du chiffre d'affaires mensuel de chacun;
+    \item une prime de $2\,000$\,\geneuro\ à partager au \textit{prorata} des contribution au chiffre d'affaires mensuel total.
+  \end{itemize}
+  Les chiffres d'affaires (en euros) par mois et par représentant sont les suivants:
+  \begin{center} \fns
+    \begin{tabularx}{0.9\linewidth}{|>{\bfseries}l|*{6}{>{\centering\arraybackslash}X|}}
+      \cline{2-7}
+      \multicolumn{1}{c|}{} & \textbf{Juillet} & \textbf{Août} & \textbf{Septembre} & \textbf{Octobre} & \textbf{Novembre} & \textbf{Décembre} \\
+      \hline
+      Albert                &     25\,225      &    13\,405    &      16\,570       &     33\,000      &      38\,600      &      34\,650      \\
+      \hline
+      b\'en\'edicte              &     38\,720      &    35\,440    &      32\,240       &     62\,020      &      51\,125      &      44\,105      \\
+      \hline
+      Camille               &     58\,275      &    49\,445    &      51\,880       &     44\,825      &      59\,335      &      57\,340      \\
+      \hline
+    \end{tabularx}
+  \end{center}
+  \begin{enumerate}
+    \item Créer un tableau donnant pour chaque mois le fixe, la commission et la prime de chaque représentant, ainsi que le salaire brut (i.e. le total).
+    \item Choisir convenablement les formats des cellules pour une mise en forme efficace.
+    \item Ce tableau est-il facilement applicable à un nombre plus important de commerciaux ou sur une plus longue période? Si non, comment l'améliorer?
+    \item Reprendre ce tableau avec une commission de $1,5$\,\% et une prime de $3\,000$\,\geneuro.
+    \item Reprendre le tableau initial avec une augmentation des salaires fixes de $150$\,\geneuro\ à partir de septembre (inclus) et une commission de $1$\,\% à partir de ce même mois.
+    \item Quelle solution semble la moins coûteuse pour la société?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Gestion des dates]
+  Pour un tableur, une date est le nombre de jours depuis une certaine date. C'est donc une valeur numérique et le format d'affichage permet de visualiser cette valeur comme une date.
+  \begin{enumerate}
+    \item Quelle est la date attachée au \og jour $0$ \fg\ du tableur utilisé?
+    \item Quelle sera la date $137$~jours après le $16$~mars 2021? Quelle était la date $1\,204$~jours avant?
+    \item La fonction \sff{DATEDIF} permet de calculer une différence entre deux date selon différentes \og unités \fg. Entre le 01/03/2019 et le 12/03/2021, calculer le nombre:
+    \begin{enumerate}
+      \item d'années, de mois et de jours.
+      \item de mois et de jours après soustraction des années.
+      \item de jours après soustraction des années et des mois.
+    \end{enumerate}
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Application]
+  On considère le tableau de données suivant:
+  \begin{center} \fns
+    \begin{tabularx}{0.9\linewidth}{|l|*{5}{>{\centering\arraybackslash}X|}}
+      \hline
+      \textbf{Client}   & \textbf{Date de facture} & \textbf{Date d'échéance} & \textbf{Délai} & \textbf{Lettre de rappel} & \textbf{État du règlement} \\
+      \hline
+      Christophe Petit  &        13/01/\the\year        &        02/02/\the\year        &                &                           &           Réglé            \\
+      \hline
+      Stéphane Durand   &        13/01/\the\year        &        03/03/\the\year        &                &                           &                            \\
+      \hline
+      Sandrine Dubois   &        13/01/\the\year        &        10/03/\the\year        &                &                           &           Réglé            \\
+      \hline
+      David Moreau      &        14/01/\the\year        &        12/03/\the\year        &                &                           &                            \\
+      \hline
+      Nathalie Lefebvre &        14/01/\the\year        &        20/03/\the\year        &                &                           &                            \\
+      \hline
+      Isabelle Leroy    &        14/01/\the\year        &        01/04/\the\year        &                &                           &           Réglé            \\
+      \hline
+    \end{tabularx}
+  \end{center}
+  \begin{enumerate}
+    \item Calculer la colonne \og Délai \fg, où le \emph{délai} est le temps restant entre la date d'échéance et le jour de la consultation du tableau. (On pourra s'intéresser à la fonction \sff{AUJOURDHUI}.)
+    \item Un délai de $8$~jours après la date d'échéance est laissé avant qu'une lettre de rappel soit envoyée. Créer une formule permettant d'indiquer par un \og Lettre \fg\ dans la colonne \og Lettre de rappel \fg\ lorsque qu'un courrier doit être envoyé.
+    \item Utiliser le formatage conditionnel pour que le délai s'affiche en {\color{iutorange}orange} lorsqu'il atteint (ou dépasse) le seuil de $8$~jours sans que le paiement ait été effectué.
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Expressions conditionnelles]
+  Les \emph{expressions conditionnelles} sont construites à partir d'\emph{opérateurs de comparaison}: \verb+=+, \verb+>+, \verb+<+, \verb+>=+, \verb+<=+ et \verb+<>+ (pour \og différent de \fg). Ces expressions ont pour résultat une \emph{valeur logique}: \sff{VRAI} ou \sff{FAUX}. Les \emph{fonctions logiques} permettent de construire des expressions logiques à partir d'expressions conditionnelles.
+  \begin{enumerate}
+    \item Les fonctions \sff{ET} et \sff{OU}. Dans les cellules \verb+B5+ et \verb+B6+, saisir les formules suivantes:
+    \begin{center}
+      \verb+=ET(B2<=C2;B3>C3)+ \quad et \quad \verb+=OU(B2<=C2;B3>C3)+.
+    \end{center}
+    Tester les sorties de ces formules avec différentes valeurs saisies dans les cellules \verb+B2+ à \verb+C3+.
+    \item La fonction \sff{SI} permet de renvoyer différentes valeurs selon le résultat d'un \og test logique \fg. Saisir dans les cellules \verb+B11+ à \verb+B13+ les formules suivantes:
+    \begin{center}
+      \verb+=SI(B9=16)+, \quad \verb+=SI(B9=16;"Égalité")+ \quad et \quad \verb+=SI(B9=16;"Égalité";"Différence")+.
+    \end{center}
+    Comment analyser les sorties en fonction de la valeur saisie en cellule \verb+B9+?
+  \end{enumerate}
+\end{exercise}
+
+\begin{exercise}[Application]
+  On souhaite automatiser (au maximum) l'établissement d'une facture intégrant différentes réductions selon la qualité du client et le montant de son achat.
+  \begin{enumerate}
+    \item Construire un tableau permettant la mise ne forme des factures. (On pourra s'inspirer de l'exemple en fin d'énoncé.)
+    \item Construire les formules pour que la facture soit calculée selon les règles suivantes:
+    \begin{itemize}
+      \item Remise 1: $2$\,\% pour les grossistes.
+      \item Remise 2: $5$\,\% pour les grossistes si le sous-total 1 est d'au moins $10\,000$\,\geneuro.
+      \item Escompte: si le paiement s'effectue au comptant, $2$\,\% pour les détaillants et $3$\,\% pour les grossistes.
+      \item Frais de port: $50$\,\geneuro, mais ne sont pas facturés si la vente est emportée ou si le total TTC est supérieur à $15\,000$\,\geneuro.
+    \end{itemize}
+    \item Établir une facture pour chacun des cas suivants:
+    \begin{enumerate}
+      \item Grossiste achetant $12\,000$\,\geneuro\ de marchandises, paiement comptant, livré.
+      \item Grossiste achetant $9\,000$\,\geneuro\ de marchandises, paiement comptant, emporté.
+      \item Détaillant achetant $25\,000$\,\geneuro\ de marchandises, paiement comptant, emporté.
+      \item Détaillant achetant $12\,000$\,\geneuro\ de marchandises, paiement différé, livré.
+      \item Grossiste achetant $12\,000$\,\geneuro\ de marchandises, paiement comptant, emporté.
+    \end{enumerate}
+  \end{enumerate}
+  \begin{center} \fns
+    \begin{tabularx}{0.5\linewidth}{|l|X|}
+      \hline
+      \multicolumn{2}{|c|}{\bfseries Fiche de renseignements (Oui/Non)} \\
+      \hline\hline
+      Grossiste         & \\
+      \hline
+      Paiement comptant & \\
+      \hline
+      Vente emportée    & \\
+      \hline
+      \multicolumn{2}{c}{} \\
+      \hline
+      \multicolumn{2}{|c|}{\bfseries Facture} \\
+      \hline\hline
+      Marchandise (HT)  & \\
+      \hline\hline
+      Remise 1          & \\
+      \hline
+      Sous-total 1      & \\
+      \hline
+      Remise 2          & \\
+      \hline
+      Sous-total 2      & \\
+      \hline\hline
+      Escompte          & \\
+      \hline
+      Total HT          & \\
+      \hline\hline
+      TVA ($20$\,\%)    & \\
+      \hline
+      Total TTC         & \\
+      \hline\hline
+      Frais de port     & \\
+      \hline
+    \end{tabularx}
+    \medskip
+    
+    Exemple de mise en forme de la facture
+  \end{center}
+\end{exercise}
+
+\end{document}

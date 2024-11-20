@@ -1,0 +1,244 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.6cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textwidth}{165mm}
+\setlength{\oddsidemargin}{1.5mm}
+
+\usepackage{pdfpages}
+%\renewcommand{\baselinestretch}{0.85}
+
+\pagenumbering{gobble}  %% remove page number
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\newif\ifcorrection
+\correctiontrue   %% Final version
+%\correctionfalse   %% Reviewer's version
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer}
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2018-2019}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2018} 
+\TDHead{\universityname}{\deptname}{UE31 M3108C, \years}{\large DS1 bis: Techniques de l'information et de la communication}
+%\TDHead{DUT TC}{}{\large TIC3: Fonctions avanc\'ees d'un tableur}
+%-------------------------------------------------------------------
+\vspace{-0.5cm}
+\begin{center}
+ \textbf{Dur\'ee 1h30, documents et objets connect\'es interdits. }\\
+ \textit{Chaque r\'eponse devra \^etre r\'edig\'ee en fran\c{c}ais, \^etre intelligible et parfaitement justifi\'ee.\\ (1 point de pr\'esentation)}
+\end{center}
+
+\vspace{-0.3cm}
+
+% 
+% \underline{Rappels:} 
+% \begin{itemize}
+%  \item Loi binomiale $X \sim \beta(n,p)$: $P(X=x) = C_n^x p^x(1-p)^{n-x}$
+% % \item Loi de Poisson $X \sim \mathcal{P}(\lambda)$: $P(X=x)=\frac{\ee^{-\lambda}\lambda^x}{x!} \quad ,\forall \lambda > 0$
+%  \item Esp\'erance: $E[X] = \sum_x x~P(X=x)$
+% % \item Variance: $V[X] = E[(X-E[X])^2] = E[X^2] - E[X]^2$
+% \end{itemize}
+\vspace{-0.3cm}
+\section{Utilisation de Microsoft Excel}
+\vspace{-0.3cm}
+
+%% 1 point
+\exost (8 points) R\'epondez aux questions suivantes en 1 phrase maximum.
+\begin{enumerate}
+ \item Quelles extensions peut avoir un fichier produit par Microsoft Excel? %(1 point)
+ \ifcorrection
+ \textcolor{red}{~\\Un fichier excel porte l'extension ``.xlsx'' (version depuis 2009) ou ``.xls'' (anciennes versions).}
+ \fi
+ \item Qu'est ce qu'un fichier portant l'extension ``.csv'' et \`a quoi cela peut servir? %(2 points)
+ \ifcorrection
+ \textcolor{red}{~\\Un fichier csv est un fichier texte dont les champs sont s\'epar\'ees par des virgules. C'est un format universel qui permet d'\'echanger des donn\'ees entre plusieurs logiciels et lisible par un humain.}
+ \fi
+ \item Quelles sont les \'etapes permettant d'ouvrir un fichier ``.csv'' avec Microsoft Excel? %(2 points)
+  \ifcorrection
+ \textcolor{red}{~\\Un fichier csv doit \^etre import\'e \`a partir d'un fichier texte. Il faut ensuite configurer l'importation pour expliquer \`a Excel comment r\'ecup\'erer les valeurs au bon format.}
+ \fi
+ \item \`A quoi servent les r\'ef\'erences absolues aux cellules dans les calculs sous Excel? Donnez un exemple d'utilisation.% (3 points)
+  \ifcorrection
+ \textcolor{red}{~\\Une r\'ef\'erence absolue permet de lier une cellule pr\'ecise \`a un calcul m\^eme si on copie/colle une formule dans un classeur Excel. \verb? $A$4? Indique \`a excel qu'on fera toujours r\'ef\'erence \`a la cellule A4. }
+ \fi
+ \item \`A quoi sert le solveur sous Excel?% (1 points)
+  \ifcorrection
+ \textcolor{red}{~\\Une r\'ef\'erence absolue permet de lier une cellule pr\'ecise \`a un calcul m\^eme si on copie/colle une formule dans un classeur Excel. \verb? $A$4? Indique \`a excel qu'on fera toujours r\'ef\'erence \`a la cellule A4. }
+ \fi
+\end{enumerate}
+
+\exost (4 points) Proposez une m\'ethode vue en cours permettant de rechercher et d'afficher les donn\'ees d'une cellule \`a partir d'une autre cellule 
+contenue une feuille de calcul sous Excel. Vous donnerez le nom des fonctions utilis\'ees avec une description des param\`etres attendus ainsi qu'un exemple d'utilisation.
+
+%% exercice formules simples
+\exost (5 points) On consid\`ere la feuille de calcul suivante.
+\begin{center}
+\includegraphics[width=0.5\textwidth]{exemple.jpg} 
+\end{center}
+
+\begin{enumerate}
+ \item Proposez une formule (format Excel) permettant d'afficher dans la cellule B5 le montant de la prime \'egal au taux F1 appliqu\'e au r\'esultat B4 
+ uniquement si celui-ci d\'epasse le montant ``Limite 1'' contenu dans la cellule B1.
+ \item Proposez une formule permettant d'afficher dans la cellule D8 le montant de la prime du commercial dont le nom se trouve dans la cellule B8.
+\end{enumerate}
+
+\vspace{-0.3cm}
+\section{Utilisation de Wordpress}
+\vspace{-0.3cm}
+\exost (3 points) R\'epondez aux questions suivantes en 1 phrase maximum.
+
+\begin{enumerate}
+ \item Qu'est ce que Wordpress et \`a quoi sert il? % 1 point
+   \ifcorrection
+ \textcolor{red}{~\\Wordpress est un gestionnaire de contenu int\'egr\'e qui permet de d\'evelopper rapidement un site internet sans connaissance avanc\'ee en programmation.}
+ \fi 
+ %Quelles sont les principales diff\'erences entre un article et une page sous Wordpress? 
+ \item Expliquez quand il faut utiliser l'utilisation 
+ \ifcorrection
+ \textcolor{red}{~\\Un article est beaucoup plus complet qu'une page. Il permet de d\'evelopper un sujet en d\'etail, permettre aux lecteur de poster des commentaires.}   % 3 point
+ \fi
+\end{enumerate}
+
+
+% \exost Quel est le principe du test khi-2?
+% %R\'epondez \`a cette question en exposant clairement (en une phrase maximum).
+% \begin{enumerate}
+%  \item Donnez et expliquez la formule permettant de calculer la statistique de ce test.  %%2
+%  \ifcorrection
+%  \textcolor{red}{~\\$T = \sum_{i=1}^n \frac{(N\hat{p}_X(i) - N \hat{p}_Y(i))^2}{N \hat{p}_Y(i)}$.
+%  avec $N$ le nombre total de r\'ealisations, $n$ la taille de l'\'echantillon (le nombre distinct de valeurs prises par la v.a. $X$), $\hat{p}_X$ la probabilit\'e estim\'ee que $X=i$
+%  et $p_Y(i)$ la probabilit\'e que $Y=i$.
+%  }
+%  \fi
+%  %\item Expliquez la signification ainsi que le calcul permettant de trouver chaque variable \`a partir d'un \'echantillon $(X_1,X_2,...,X_n)$. %2
+%  \item Comment s'utilise la table de la loi khi-2 pour r\'ealiser un test? %1
+%   \ifcorrection
+%  \textcolor{red}{~\\La table khi-2 fournit la valeur $t$ pour un degr\'e de libert\'e (ddl) et un risque $\alpha$ donn\'e, tel que $P(X \leq t) = 1-\alpha$.\\
+%  Par exemple, si $\alpha=0,05$, il y a dont 95\% de chance qu'une valeur inf\'erieure \`a $t$ soit prise par une v.a. suivant une loi khi-2 au ddl donn\'e.}
+%  \fi
+% \end{enumerate}
+% 
+% \section{Utilisation de la table de la loi normale (4 points)}
+% %% 4 points 
+% %% Calcul de loi
+% \exost En utilisant la fonction de r\'epartition d'une variable al\'eatoire (v.a.) suivant une
+% loi normale centr\'ee r\'eduite $X \sim \mathcal{N}(0,1)$, calculez en utilisant la table correspondante:
+% \begin{enumerate}
+%  \item $P(X \leq 0,43)$? $P(X \leq 0,51)$?   %1pt
+%   \ifcorrection
+%   \textcolor{red}{~\\$P(X \leq 0,43) = 0,6664$, $P(X \leq 0,51) = 0,6950$.}
+%   \fi
+%  \item $P(X > 0,68)$?  $P(X > 1)$? %1pt
+%   \ifcorrection
+%    \textcolor{red}{~\\$P(X > 0,68) = 1-P(X\leq0,68) = 1-0,7517 = 0.2483$, $P(X > 1) = 1-P(X \leq 1) = 1-0,8413 = 0,1587$.}
+%   \fi
+%  \item $P(0,2< X \leq 0,32)$?  %1pt
+%   \ifcorrection
+%    \textcolor{red}{~\\$P(0,2 < X \leq 0,32) = F_X(0,32)-F_X(0,2) = 0,6255-0,5793 = 0,0462$.}
+%   \fi 
+%  \item $P(1 \geq X > 0,5)$?  %1pt
+%    \ifcorrection
+%    \textcolor{red}{~\\$P(1 \geq X > 0,5) = P(0,5 < X \leq 1) = F_X(1)-F_X(0,5) = 0,8413-0,6915 = 0,1498$.}
+%   \fi 
+% \end{enumerate}
+% 
+% \section{Test khi-2 (7 points)}
+% %
+% %% 6 points
+% \begin{table}[!ht]
+%  %\caption{R\'epartition du nombre de contrats sign\'es par jour durant $N=100$ jours observ\'es.}
+%  \begin{tabular}{|l|l|l|l|l|l|l|}
+%   \hline
+%   nombre de contrats sign\'es par jour        & 0  & 1   & 2  & 3 & 4 & 5 \\
+%   \hline
+%   Effectifs (nombre de jours observ\'es)      & 32 & 45  & 17 & 5 & 1 & 0\\
+%   \hline
+%  \end{tabular}
+% \end{table}
+% %
+% %% Test de khi2
+% \exost Dans une entreprise avec 5 commerciaux, on observe sur $N=100$ jours la distribution
+% du nombre de contrats sign\'es (chaque commercial signe au maximum un contrat par jour).
+% On souhaite montrer que la v.a. $X$ qui donne le nombre de contrats sign\'es suit une 
+% loi binomiale.
+% 
+% \begin{enumerate}
+%   \item Au total, combien de contrats ont \'et\'e sign\'es durant les 100 jours par cette entreprise?
+%     \ifcorrection
+%     \textcolor{red}{~\\$N_c = 1\times 45 + 2 \times 17 + 3 \times 5 + 4 \times 1 = 98$.}
+%    \fi  
+%   \item Calculez l'esp\'erance de $X$. %% 0.94
+%     \ifcorrection
+%     \textcolor{red}{~\\
+%     $E[X] = 0 \times \frac{32}{100} + 1\times \frac{45}{100} + 2 \times \frac{17}{100} + 3 \times \frac{5}{100} + 4 \times \frac{1}{100} + 5 \times \frac{0}{100} = \frac{N_c}{100} = 0,98$.}
+%    \fi  
+%   \item Sachant que l'esp\'erance d'une v.a. $X$ suivant loi binomiale vaut $n p$ (avec $n$ la taille de l'\'echantillon et $p$ la probabilit\'e de succ\`es \`a une \'epreuve de Bernoulli).
+%   D\'eduire la valeur de $p$. 
+%    \ifcorrection
+%     \textcolor{red}{~\\On a $E[X] = n p = 5 \times p = 0,98$. Donc $p = 0,98 / 5 = 0.196$}
+%    \fi
+%   \item En utilisant le test khi-2 (d\'etaillez toutes les \'etapes), dites au risque $\alpha=0,05$ si il faut accepter ou rejeter l'hypoth\`ese $H_0$: $X \sim \beta(5;0,2)$. (c'est-\`a-dire, l'hypoth\`ese nulle
+%   qui stipule que $X$ suit une loi binomiale de param\`etres $n=5$ et $p=0,2$).
+%    \ifcorrection
+%     \textcolor{red}{~\\1) On calcule les probabilit\'es pour $Y \sim \beta(5;0,2)$.\\
+%       \begin{tabular}{|l|l|l|l|l|l|}
+%        \hline
+%         i            & 0      & 1       & 2      & 3       & 4  et plus \\
+%         \hline
+%         $p_Y(i)$     & 0.3277 & 0.4096  & 0.2048 & 0.0512  & 0.0064\\
+%         \hline
+%         $N p_Y(i)$   & 32,77   & 40,96   & 20,48  & 5,12    & 0,64\\
+%         \hline
+% %        \hline
+% %        $p_Y(i)$     & 0.4101 & 0.4002  & 0.1562 & 0,0305  & 0,0030 & $1.16\times 10^{-4}$\\
+% %        \hline
+%        \end{tabular}
+% %
+% ~\\
+% 2) On formule l'hypoth\`ese \`a tester. $H_0:$ $\hat{p}_X = p_Y$ au risque $\alpha=0,05$:\\
+% 3) On calcule la statistique de test.\\
+% $T = \frac{(32-32,77)^2}{32,77} + \frac{(45-40,96)^2}{40,96} + \frac{(17-20,48)^2}{20,48} + \frac{(5-5,12)^2}{5,12} + \frac{(1-0,64)^2}{0,64} \approx 1,2132 $.
+% %
+% %$T = \frac{(32-41,01)^2}{41,01} + \frac{(45-40,02)^2}{40,02} + \frac{(17-15,62)^2}{15,62} + \frac{(5-3,05)^2}{3,05} + \frac{(1-0,3)^2}{0,3} \approx 5.6012 $.
+%     %
+%     ~\\
+% 4) On compare $T$ au seuil de la table khi-2 pour ddl=$n-1=4$ et $\alpha=0,05$.\\
+% %
+%     Comme $T < 9,49$, alors on accepte l'hypoth\`ese nulle $H_0$.
+%    }
+%   \fi
+% \end{enumerate}
+%  
+%  \ifcorrection
+%  
+%  \else
+%  \clearpage
+% \includepdf{tables.pdf}
+% \fi
+\end{document}
+
+% End Of File
+

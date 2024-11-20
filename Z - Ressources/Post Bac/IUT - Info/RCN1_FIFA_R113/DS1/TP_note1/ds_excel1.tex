@@ -1,0 +1,142 @@
+\documentclass[a4paper,8pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.8cm}
+\setlength{\topmargin}{-0.5cm}
+\setlength{\textwidth}{160mm}
+\setlength{\oddsidemargin}{1mm}
+%\usepackage[clearempty]{titlesec}
+
+\thispagestyle{empty}
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer}
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2021-2022}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2021} 
+\TDHead{\universityname}{\deptname}{R1.02, \years}{Nom: \hspace{5cm} Pr\'enom: \hspace{5cm} Groupe:\hspace{2cm}} %\large DS1: Utilisation avanc\'ee d'Excel
+%\TDHead{DUT TC}{}{\large TIC3: Fonctions avanc\'ees d'un tableur}
+%-------------------------------------------------------------------
+\vspace{-0.6cm}
+\begin{center}
+ \textbf{TP not\'e, Dur\'ee: 1h30, documents interdits,\\objects connect\'es interdits.}
+\end{center}
+\vspace{-0.4cm}
+\small
+\underline{Consignes:} 
+\begin{itemize}
+% \item Vous d\'eposerez les fichiers cr\'e\'es \textbf{dans un dossier portant votre nom} en veillant \`a indiquer le \textbf{num\'ero de poste}.
+% \item Vous indiquerez pour chaque question le nom du fichier correspondant et une description succinte de ce qui a \'et\'e fait.
+% \item Il n'est pas n\'ecessaire d'imprimer vos codes sources, qui devront \^etre propres et bien comment\'es, \textbf{1 point est r\'eserv\'e \`a la pr\'esentation et \`a l'indentation du code}.
+ \item {\bf Le sujet devra imp\'erativement \^etre remis en fin de s\'eance. La non remise du sujet engendrera une note de 0/20}. % \textbf{Les copies remises sans le sujet ne seront pas corrig\'ees}.
+ %\item Vous d\'eposerez votre fichier ``{\bf \verb?nom_prenom.xlsx?}'' sur E-Campus: \url{https://ecampus.paris-saclay.fr}.
+ \item Envoi du travail (3 fichiers portant votre nom) par e-mail \`a {\bf dominique.fourer@univ-evry.fr}.
+ \item \textbf{1 point pour la pr\'esentation et le respect des consignes}.
+\end{itemize}
+
+\normalsize
+%\vspace{-0.4cm}
+%\vspace{1cm}
+
+% \exost (2 points)
+% 
+% \begin{enumerate}
+%  \item 
+%  \item Ouvrez le fichier \verb?ds1.xlsx? dans lequel vous ajouterez une feuille de calcul \verb?ex1?.
+% %  \item Importez le fichier \verb?resultats.csv? dans la nouvelle feuille \verb?ex1? en vous assurant que les donn\'ees soient au bon format.  %% 1
+% %  \item Ajoutez une colonne que vous appellerez ``\^age'' que vous calculerez pour chaque individu \`a partir de la date de naissance. %% 1
+% \end{enumerate}
+%% texte / formulaire
+%\underline{Objectif:} Traitement de donn\'ees commerciales et pr\'esentation de r\'esultats sur support num\'erique.\\
+Consignes: R\'ecup\'erez le fichier \verb?https://fourer.fr/dsrcn1.zip? et d\'ecompressez son contenu sur votre bureau.
+\vspace{-0.3cm}
+%% excel
+\section{Utilisation d'un tableur}
+%
+\exost (2 points) Ouvrez-le fichier \verb?clients.xlsx?.
+Ajoutez une nouvelle feuille de calcul {\bf ex1} dans laquelle vous cr\'eerez un tableau crois\'e dynamique (TCD) 
+permettant de visualiser le nombre de clients en fonction du moyen de prospection utilis\'e (Origine).
+Vous ajouterez dans la m\^eme feuille de calcul un graphique en b\^atons permettant de visualiser cette information (en abscisse
+l'origine du client et en ordonn\'ee le nombre correspondant de clients).
+
+\exost (2 points) Vous ajouterez une nouvelle feuille de calcul {\bf ex2} dans laquelle vous ajouterez un tableau crois\'e dynamique (TCD)
+permettant de visualiser le nombre de clients prospect\'es ainsi que la moyenne du co\^ut de prospection pour chaque commercial.
+Vous ajouterez dans la m\^eme feuille de calcul un graphique en b\^atons permettant de visualiser le nombre de clients 
+obtenus par chaque commercial.
+
+\exost (2 points) En utilisant la fonction \verb?DATEDIF(date1,date2,"d")? calculez le temps \'ecoul\'e (nombre de jours)
+depuis la date du dernier contact. Vous ajouterez une nouvelle colonne dans la feuille de calcul portant le titre ``nombre de jours \'ecoul\'es''.
+
+
+\exost (5 points) Ajoutez 3 colonnes portant les titres S1, S2 et S3 correspondant
+aux valeurs ci-dessous calcul\'ee \`a l'aide de la fonction \verb?SI(condition;resultat_si_vrai;resultat_si_faux)?:
+\begin{itemize}
+ \item S1: score d'origine valant 3 si ``client'', 0 dans les autres cas.
+ \item S2: score de dernier contact : 5 si le dernier contact date de plus 3 mois, 0 dans les autres cas.
+ \item S3: score de co\^ut prospection : 5 si le co\^ut d\'epasse 100 euros, 0 dans les autres cas.
+\end{itemize}
+Enfin, ajoutez une nouvelle colonne ``score'' correspondant \`a la somme des 3 crit\`eres ci-dessus.
+\vspace{-0.3cm}
+\section{Rapport professionnel}
+Pour alimenter le contenu attendu vous pourrez consulter le site internet suivant: \url{https://www.pourpasunrond.fr/fiche-synthetique-entreprise/}.
+
+%% rapport :
+\exost (8 points) Cr\'eez un nouveau document texte {\bf \verb? nom_prenom.docx?} dans lequel vous pr\'esenterez les donn\'ees trait\'ees \`a l'exercice pr\'ec\'edent.
+Le Document produit fera au minimum 5 pages de contenu et comportera {\bf une page de garde} et {\bf une table des mati\`eres}.
+Vous prendrez soin de num\'eroter chaque page.
+
+Le document r\'ealis\'e respectera le plan ci-dessous et portera sur une soci\'et\'e fictive dont vous serez le g\'erant:
+%
+\begin{enumerate}
+ \item Introduction (section libre introductive)
+ \item Pr\'esentation synth\'etique de l'entreprise (identit\'e, histoire, activit\'e, organigramme)
+ \item Bilan de prospection reposant sur l'analyse sur Tableur
+ \item Perspectives et pr\'esentation des futures actions commerciales
+\end{enumerate}
+
+%%
+
+% %% power-point
+% 
+% \section{Pr\'esentation professionnelle}
+% 
+% \exost (6 points)
+% \exost Cr\'eez une nouvelle pr\'esentation {\bf \verb? nom_prenom.pptx?} permettant de faire une synth\`ese du rapport
+% et dont le contenu portera sur l'analyse r\'ealis\'ee sur tableur.
+% La pr\'esentation reprendra la structure du plan du rapport pr\'ec\'edent et en fera une synth\`ese en 10 diapositives minimum.
+% 
+% Indications: 
+% \begin{itemize}
+%  \item Ajoutez une page de garde et un sommaire reprenant le plan du rapport
+%  \item Ins\'erez des images ainsi que des transitions permettant
+% \end{itemize}
+% 
+
+
+\end{document}
+
+% End Of File
+

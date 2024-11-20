@@ -1,0 +1,135 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.8cm}
+\setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{165mm}
+\setlength{\oddsidemargin}{0mm}
+\usepackage{eurosym}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\input{definitions}
+
+\newif\ifcorrection
+%\correctiontrue   %% avec correction
+\correctionfalse   %% sans correction
+
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S1)}
+\newcommand{\years}{2022-2023}
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer, S. Cartier}
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2022} 
+\TDHead{\universityname}{\deptname}{R1.07, \years}{\large TD2: Taux d'\'evolution}
+%-------------------------------------------------------------------
+
+
+%\underline{Rappels:} 
+
+%Factorielle: $n! = 1\times 2 \times \cdots \times n$\\
+%Combinaisons: $C_n^k = \frac{n!}{k! (n-k)!}$\\
+%Arrangements: $A_n^k = \frac{n!}{(n-k)!}$\\
+%Permutations: $P_n = A_n^n = n!$
+
+\exost Calculer un taux d'\'evolution
+  \begin{enumerate}
+    \item Une ville de $5\,500$~habitants voit arriver $120$~habitants. Quel est le taux d'\'evolution de sa population?
+    \item Le prix d'un objet est de $80$\,\euro. Il diminue de $10$\,\euro. Calculer le taux d'\'evolution de ce prix.
+    \item La population d'une ville passe de $28\,040$ à $23\,834$~habitants. Quel est le taux de diminution de cette population?
+    \item Un prix passe de $125$\,\euro\ à $140$\,\euro. De quel pourcentage a-t-il augment\'e?
+  \end{enumerate}
+
+
+\exost Calculer une valeur finale
+  \begin{enumerate}
+    \item Une population de $30\,150$~habitants a augment\'e de $24$\,\%. Calculer la population finale.
+    \item Le prix d'un objet est de $235$\,\euro. Il diminue de $30$\,\%. Combien coûte cet objet apr\`es la diminution?
+    \item Le prix hors taxes (HT) d'un téléphone portable s'\'el\`eve à $85$\,\euro.
+    \begin{enumerate}
+      \item Calculer le prix toutes taxes comprises (TTC) de ce t\'el\'ephone, sachant que le taux de TVA est de $20$\,\%.
+      \item Le vendeur propose une remise de $20$\,\% sur le prix TTC. Calculer le prix effectivement payé par le client.
+    \end{enumerate}
+    \item En 2010, une île touristique a compté $8\,500$~touristes sur ses terres. L'année suivante on a constaté une arrivée massive de requins en bordure de mer qui a fait chuté le nombre de touristes de $42$\,\%. Combien de touristes sont venus sur cette île en 2011?
+  \end{enumerate}
+
+% 
+% \begin{exercise}[Calculer une valeur initiale] \m{}
+%   \begin{enumerate}
+%     \item Le prix d'un objet a augmenté de $25$\,\%. Il coûte à présent $135$\,\euro. Quel était son prix avant l'augmentation?
+%     \item Après une réduction de $35$\,\%, un article coûte $79,30$\,\euro. Quel était son prix avant la réduction?
+%     \item Le prix TTC d'un article est de $385,20$\,\euro\ avec une TVA de $20$\,\%. Quel est son prix hors taxes?
+%   \end{enumerate}
+% \end{exercise}
+% 
+% \begin{exercise}[Calculer un taux global] \m{}
+%   \begin{enumerate}
+%     \item Une action vaut $200$\,\euro. Sur trois mois, son prix augmente de $12$\,\%, puis baisse de $24$\,\% et enfin ré-augmente de $12$\,\%. Quel est son prix final? 
+%     \item Un prix a baissé de $2,4$\,\% par an pendant $8$~ans. Déterminer son taux d'évolution global.
+%     \item Un parc d'attraction a accueilli $13$~millions de visiteurs en 2015 et cette fréquentation a baissé de $1,8$\,\% en 2016. Quel devrait être le taux d'évolution en 2017 pour que le taux global sur la période 2015-2017 soit de: \quad (a) $2$\,\%? \quad (b) $-4$\,\%? \quad (c) $0$\,\%?
+%   \end{enumerate}
+% \end{exercise}
+% 
+% \begin{exercise}[Calculer un taux moyen] \m{}
+%   \begin{enumerate}
+%     \item Le prix du baril de pétrole a augmenté de $17$\,\% de juillet 2014 à juillet 2015, et de juillet 2015 à juillet 2016 il a augmenté de $56$\,\%. Déterminer le taux d'évolution moyen par an du prix du baril de pétrole sur ces deux dernières années.
+%     \item Le prix d'un article vendu, dans une grande enseigne, baisse de $40$\,\% au début des soldes puis de $20$\,\% supplémentaires en dernière démarque. Après les soldes, l'enseigne ré-augmente le prix de l'article de $50$\,\%. Déterminer le taux d'évolution moyen du prix de cet article.
+%     \item Le tableau ci-dessous donne le cours du baril en dollars au mois de juin des années 2007 à 2012:
+%     \begin{center}
+%       \begin{tabularx}{0.9\linewidth}{|l|*{6}{>{\centering\arraybackslash$}X<{$}|}}
+%         \hline
+%         Année                 & 2007  &  2008  & 2009  & 2010  &  2011  & 2012  \\
+%         \hline
+%         Cours en juin (en \$) & 71,05 & 132,32 & 68,68 & 74,76 & 114,03 & 95,16 \\
+%         \hline
+%       \end{tabularx}
+%     \end{center}
+%     Déterminer le taux d'évolution moyen du prix du baril sur cette période.
+%   \end{enumerate}
+% \end{exercise}
+% 
+% \begin{exercise}[Calculer un indice] \m{}
+%   \begin{enumerate}
+%     \item Le nombre d'abonnements à internet en Chine était de $111,5$~millions en 2009 et de $126,3$~millions en 2010. Déterminer l'indice du nombre d'abonnements en 2010, d'année de référence 2009.
+%     \item En 2011 les droits d'inscription en première année d'une université étaient de $177$\,\euro. L'indice des droits d'inscription en 2011, d'année de référence 2010, était de $101,7$. Calculer les droits d'inscription en première année de cette université en 2010.
+%     \item Les indices des loyers sont donnés dans le tableau suivant:
+%     \begin{center}
+%       \begin{tabularx}{0.8\linewidth}{|X|*{5}{>{\centering\arraybackslash$}X<{$}|}}
+%         \hline
+%         Année  & 2008 & 2009 & 2010 & 2011  & 2012  \\
+%         \hline
+%         Indice & 97,7 & 99,9 & 100  & 101,5 & 103,9 \\
+%         \hline
+%       \end{tabularx}
+%     \end{center}
+%     Déterminer les indices des loyers avec 2009 comme année de référence.
+%   \end{enumerate}
+% \end{exercise}
+
+
+
+\end{document}
+
+% End Of File
+

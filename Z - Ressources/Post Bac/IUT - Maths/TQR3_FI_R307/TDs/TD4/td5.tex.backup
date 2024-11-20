@@ -1,0 +1,348 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.5cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textwidth}{155mm}
+\setlength{\oddsidemargin}{2mm}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\input{definitions}
+
+\newif\ifcorrection
+\correctiontrue   %% Final version
+%\correctionfalse   %% Reviewer's version
+
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2020-2021}
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer}
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2019} 
+\TDHead{\universityname}{\deptname}{UE31 M3104C, \years}{\large TD5: Lois usuelles et statistiques}
+%-------------------------------------------------------------------
+
+\underline{Rappels:} 
+
+\begin{itemize}
+ \item Loi binomiale $X \sim \beta(n,p)$: $P(X=x) = C_n^x p^x(1-p)^{n-x}$
+ \item Loi de Poisson $X \sim \mathcal{P}(\lambda)$: $P(X=x)=\frac{\ee^{-\lambda}\lambda^x}{x!} \quad ,\forall \lambda > 0$
+ \item Esp\'erance: $E[X] = \sum_x x P(X=x)$
+ \item Variance: $V[X] = E[(X-E[X])^2] = E[X^2] - E[X]^2$
+% \item $P(a < X \leq b) = F_X(b)-F_X(a)$
+\end{itemize}
+
+~\par{}
+
+
+\exost On jette successivement, cinq fois un d\'e. On s'int\'eresse \`a la 
+v.a. $X$ qui repr\'esente le nombre de fois qu'un $3$ appara\^it.
+\begin{enumerate}
+ \item D\'efinir $X$ (seulement les ensembles de d\'epart et d'arriv\'ee).
+ \ifcorrection
+ \textcolor{red}{~\\
+ $X: \{1,2,3,4,5,6\}^5 \rightarrow \{0,1,2,3,4,5\}$
+ }
+ \fi
+ \item D\'efinir la loi de probabilit\'e de $X$ (avec ses param\`etres).
+ \ifcorrection
+ \textcolor{red}{~\\
+ $X \sim \beta(n,p)$ avec $n=5$ et $p=\frac{1}{6}$.
+ }
+ \fi
+ \item Quelle est la probabilit\'e d'obtenir le nombre $3$ deux fois?
+ \ifcorrection
+ \textcolor{red}{~\\
+ $P(X=2) = C_5^2 (\frac{1}{6})^2 (\frac{5}{6})^{3} = 0,1608$
+ }
+ \fi
+ \item Quelle est la probabilit\'e de ne pas obtenir le nombre $3$?
+ \ifcorrection
+ \textcolor{red}{~\\
+ $P(X=0) = C_5^0 (\frac{1}{6})^0 (\frac{5}{6})^{5} = 0,4019$
+ }
+ \fi
+ \item Quelle est la probabilit\'e d'obtenir le nombre $3$ au moins une fois?
+ \ifcorrection
+ \textcolor{red}{~\\
+ $\sum_{x=1}^5 P(X=x) = 1-P(X=0) = 0,5981$
+ }
+ \fi 
+ \item Quelle est la probabilit\'e d'obtenir le nombre $3$ au moins $3$ fois?
+ \ifcorrection
+ \textcolor{red}{~\\
+  $\sum_{x=3}^5 P(X=x) = 0,0322 + 0.0032 + 1,28 \times 10^{-4}$
+ }
+ \fi
+ \item Quelle est l'esp\'erance de $X$?
+  \ifcorrection
+ \textcolor{red}{~\\
+  $E[X] = np = \frac{5}{6} \approx 0,83$
+ }
+ \fi
+\end{enumerate}
+
+
+%% Loi binomiale
+\exost On consid\`ere la v.a. $X$ qui mod\'elise le nombre de fois qu'un tireur \`a l'arc
+atteint sa cible apr\`es $n$ tirs. Sachant que ce tireur a une probabilit\'e $p=\frac{5}{7}$ d'atteindre sa cible.
+\begin{enumerate}
+ \item D\'efinir la v.a. $X$.
+  \ifcorrection
+ \textcolor{red}{~\\
+ $X: \Omega \rightarrow \{0,1,2,...,n\}$\\
+ $X \sim \beta(n,p)$
+ }
+ \fi
+ \item Quelle est la probabilit\'e que le tireur touche 3 fois sa cible apr\`es 5 tirs? M\^eme question apr\`es 10 tirs?
+  \ifcorrection
+  \textcolor{red}{~\\
+  $X \sim \beta(5,\frac{5}{7}) \rightarrow P(X=3) = C_5^3 (\frac{5}{7})^3 (\frac{2}{7})^{2}\approx 0,2975$\\
+  $X \sim \beta(10,\frac{5}{7}) \rightarrow P(X=3) = C_{10}^3 (\frac{5}{7})^3 (\frac{2}{7})^{7}\approx 0,0068$
+ }
+ \fi
+ \item On suppose que le tireur gagne 1 euro \`a chaque fois qu'il touche sa cible. D\'efinir cette nouvelle v.a. $Y$ qui 
+ d\'efinit le gain du tireur apr\`es un tir.
+  \ifcorrection
+  \textcolor{red}{~\\
+  La nouvelle v.a $Y$ associe un gain de 1 euro \`a chaque fois qu'un tireur touche sa cible donc 
+  on a $Y=X$.
+  }
+  \fi
+ \item Calculer l'esp\'erance math\'ematique de $Y$ apr\`es 5 tirs.
+   \ifcorrection
+  \textcolor{red}{~\\
+  $Y$ suit une loi binomiale de param\`etre $p=5/7$ et $n=5$ donc
+  $E[Y] = np = \frac{25}{7}$
+  }
+  \fi
+ \item Calculer la variance de $Y$ apr\`es 5 tirs.
+   \ifcorrection
+  \textcolor{red}{~\\
+  La nouvelle v.a $Y$ associe un gain de 1 euro \`a chaque fois qu'un tireur touche sa cible donc 
+  on a $Y=X$.
+  }
+  \fi
+\end{enumerate}
+
+
+
+%% Loi Poisson
+\exost Une \'etude r\'ealis\'ee par un technicien a permis d'\'etablir que le nombre moyen
+des arriv\'ees de pi\`eces \`a usiner \`a un certain poste est de 90 \`a l'heure.
+En supposant que la v.a. $X$ qui compte le nombre d'arriv\'ees \`a la minute 
+suit une loi de Poisson.
+\begin{enumerate}
+ \item D\'efinir la loi de probabilit\'e de $X$
+ \item Quelle est la probabilit\'e qu'entre 10h52 et 10h53 il n'y ait aucune arriv\'ee?
+ \item Quelle est la probabilit\'e que pendant une minute il y ait entre 2 et 5 arriv\'ees?
+ \item Quelle est l'esp\'erance de $X$?
+ \item Quelle est la variance de $X$?
+\end{enumerate}
+
+
+
+% \exost On se donne la fonction de r\'epartition $F_X(x)$ d'une v.a. $X$, repr\'esent\'ee par la table suivante:
+% %
+% \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+% \hline
+%  $x$		& 2 			& 3 			& 4 			& 5 			& 6 			& 7			& 8 			& 9 			& 10 			& 11 			& 12\\
+% \hline
+%   $F_X(x)$	& $\frac{1}{36}$	& $\frac{3}{36}$	& $\frac{6}{36}$	& $\frac{10}{36}$ 	& $\frac{15}{36}$	& $\frac{21}{36}$	& $\frac{26}{36}$	& $\frac{30}{36}$	& $\frac{33}{36}$	& $\frac{35}{36}$ 	& 1\\
+% \hline
+% \end{tabular}
+% %
+% \begin{enumerate}
+%  \item Faire la repr\'esentation graphique de la fonction $x \mapsto F_X(x)$ (Vous pourrez prendre $\frac{1}{36}$ comme unit\'e sur l'axe des ordonn\'ees) 
+%   \ifcorrection
+%  \textcolor{red}{
+%  % F = [1/36 3/36 6/36 10/36 15/36 21/36 26/36 30/36 33/36 35/36 1]
+%  % bar(2:12, F)
+%  % xlabel('x')
+%  % ylabel('F_X')
+%  \begin{figure}[!ht]
+%  \centering\includegraphics[width=0.3\textwidth]{fonction_repartition}
+%  \end{figure}
+%  }
+%  \fi
+%  \item Calculer les probabilit\'es suivantes: $P(5 < X \leq 10)$, $P(X \leq 3)$, $P(X > 10)$.
+%  \ifcorrection
+%  \textcolor{red}{
+%    $P(5 < X \leq 10) = F_X(10)-F_X(5) = \frac{33}{36} - \frac{10}{36} = \frac{23}{36} \approx 0,6389$\\
+%    $P(X \leq 3) = F_X(3) = \frac{3}{36} = \frac{1}{12}$\\
+%    $P(X > 10) = 1 - P(X \leq 10) = 1 - F_X(10) = 1 - \frac{33}{36} = \frac{3}{36} = \frac{1}{12}$
+%   }
+%  \fi
+% %  \begin{enumerate}
+% %   \item $P(5 < X \leq 10)$ ?
+% %   \item $P(X \leq 3)$?
+% %   \item $P(X > 10)$
+% %  \end{enumerate}
+%  \item A quelle exp\'erience al\'eatoire vue en cours peut \^etre associ\'ee la v.a. $X$?
+%  \ifcorrection
+%  \textcolor{red}{
+%   Le lancer de 2 d\'es (lancer \'equiprobable), o\`u $X$ repr\'esente la somme des 2 valeurs.
+%  }
+%  \fi
+%  \item Dans ce cas, qu'elle est la loi suivie par $X$? 
+%    \ifcorrection
+%   \textcolor{red}{
+%    C'est la loi suivie par la somme de deux v.a. suivant une loi uniforme.\\
+%    \begin{tabular}{|l|l|l|}
+%    \hline
+%     \'ev\'enement					& x	& $P(X=x)$ \\
+%     \hline
+%     \hline
+%     $(1;1)$						& 2	& $\frac{1}{36}$ \\
+%    \hline
+%     $(1;2), (2;1)$					& 3	& $\frac{2}{36}$ \\
+%     \hline
+%     $(2;2), (1;3), (3;1)$				& 4	& $\frac{3}{36}$ \\
+%     \hline
+%     $(1;4), (2;3),(3;2),(4;1)$				& 5	& $\frac{4}{36}$ \\
+%     \hline
+%     $(1;5), (2;4), (3;3), (4;2), (5;1)$			& 6	& $\frac{5}{36}$ \\
+%     \hline
+%     $(1;6), (2;5), (3;4), (4;3), (5;2), (6;1)$		& 7	& $\frac{6}{36}$ \\
+%     \hline
+%     $(2;6), (3;5), (4;4), (5;3), (6;2)$			& 8	& $\frac{5}{36}$ \\
+%     \hline
+%     $(3;6), (4;5), (5;4), (6;3)$			& 9	& $\frac{4}{36}$ \\
+%     \hline
+%     $(4;6), (5;5), (6;4)$				& 10	& $\frac{3}{36}$ \\
+%     \hline
+%     $(5;6), (6;5)$					& 11	& $\frac{2}{36}$ \\
+%     \hline
+%     $(6;6)$						& 12	& $\frac{1}{36}$ \\
+%     \hline
+%    \end{tabular}
+%   }
+%   \fi
+% \end{enumerate}
+% 
+% %% probleme concret
+% \exost Dans une entreprise, on note $X$ et $Y$ les v.a. associ\'ees au nombre de ventes r\'ealis\'ees
+% par chacun des deux commerciaux qui la composent.
+% Nous disposons des lois $p_X$ et $p_Y$ donn\'ees par:\\
+% \begin{tabular}{|l|l|l|l|l|l|}
+% \hline
+%  $x$		& 0    & 1    & 2    & 3      & 4 ou plus \\
+%  \hline
+%   $P(X=x)$	& 0,52 & 0,27 & 0,14 & 0.07   &  0 \\
+%   \hline
+%    $P(Y=x)$	& 0,46 & 0,31 & 0,16 & 0.07   &  0 \\
+%   \hline
+% \end{tabular}
+% 
+% \begin{enumerate}
+%  \item D\'efinir la v.a. $Z=X+Y$ qui correspond au nombre total de contrats sign\'es par l'entreprise et sa loi de probabilit\'e $p_Z$
+%     \ifcorrection
+%   \textcolor{red}{
+%   $Z: \{0;1;2;3 \} \times \{0;1;2;3 \} \rightarrow \{0;1;2;3;4;5;6 \}$\\
+%   (faire un arbre)\\
+%   \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+%   \hline
+%    z 	     & 0      & 1 	& 2 		& 3 	 & 4       & 5       & 6      & 7 et plus \\
+%    \hline
+%    $P(Z=z)$  & 0.2392 & 0.2854	& 0,2313	& 0.1552 &  0.0630 & 0.0210  & 0.0049 & 0 \\
+%    \hline   
+%   \end{tabular}
+%   }
+%   \fi
+%  \item D\'efinir la v.a. $W=|X-Y|$ qui correspond \`a l'\'ecart du nombre de vente entre les 2 commerciaux et sa loi de probabilit\'e $p_Z$
+%    \ifcorrection
+%   \textcolor{red}{
+%   $W: \{0;1;2;3 \} \times \{0;1;2;3 \} \rightarrow \{0;1;2;3\}$\\
+%   (faire un arbre)\\
+%    \begin{tabular}{|l|l|l|l|l|l|}
+%    \hline
+%     w 	      & 0       & 1 	& 2 		& 3 	 & 4 et plus \\
+%     \hline
+%     $P(W=w)$  &  0.3502 & 0.393 &   0.1882      & 0.0686 & 0 \\
+%     \hline 
+%    \end{tabular}
+%   }
+%   \fi
+%  \item \'Ecrire le tableau des probabilit\'es des diff\'erentes valeurs du couple $(W,Z)$.
+%    \ifcorrection
+%   \textcolor{red}{
+%   ~\\
+%  \begin{tabular}{|l |l|l|l|l| l|l|l|l| l|l|l|l| l|l|l|l|}
+%  \hline
+%   X        & 0      & 0      & 0      & 0      & 1 & 1 & 1 & 1 &  2 & 2 & 2 & 2 & 3 & 3 & 3 & 3 \\
+%   Y        & 0      & 1      & 2      & 3      & 0 & 1 & 2 & 3 &  0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 \\
+%   \hline
+%   W        & 0      & 1      & 2      & 3      & 1 & 0 & 1 & 2 &  2 & 1 & 0 & 1 & 3 & 2 & 1 & 0 \\
+%   \hline
+%   Z        & 0      & 1      & 2      & 3      & 1 & 2 & 3 & 4 & 2 &  3 & 4 & 5 & 3 & 4 & 5 & 6 \\
+%   \hline 
+%   $P(W,Z)$ & 0.2392 & 0.1612 & 0.0832 & 0.0364 &   &   &   &   &   &    &   &   &   &   &   &  \\
+%   \hline
+%  \end{tabular}
+% }
+% \fi
+%  \item Les v.a. $W$ et $Z$ sont-elles ind\'ependantes?
+%   \ifcorrection
+%   \textcolor{red}{
+%    $P(Z|W) = \frac{P(Z, W)}{P(W)} =   $   %\frac{P(W)P(Z)}{{P(W)} = P(Z)$\\
+%    Les 2 v.a. sont ind\'ependantes.
+%   \fi
+% \end{enumerate}
+% 
+% 
+% %% probleme concret 2
+% % (moyenne) 200 , 100 , 150, sigma = 50
+% \exost On donne dans le tableau ci-dessous du nombre de ventes r\'ealis\'ees par une enseigne en fonction du jour dans le mois pour les 4 premiers mois de l'ann\'ee:\\
+% \centering\begin{tabular}{|l|l|l|l|}
+% \hline
+% 		& du 1 au 10 & du 11 au 20 & du 21 au 31 \\
+% \hline
+% \hline 
+% Janvier		& 291        & 78	   & 146 \\
+% \hline 
+% F\'evrier 	& 134        & 117         & 185 \\
+% \hline 
+% Mars	 	& 215        & 136         & 139 \\
+% \hline
+% Avril	 	& 184        & 133         & 143 \\
+% \hline 
+% \end{tabular}
+% 
+% \flushleft
+% \begin{enumerate}
+%  \item En notant $X$ la v.a. qui correspond au nombre de ventes et $Y$ la v.a. qui correspond au jour du mois, d\'efinissez la loi conjointe $p_{X,Y} = P(X=x,Y=y)$.
+%  Vous utiliserez une pr\'ecision de 100 pour quantifier les valeurs de $X$.
+%  \item Calculez les probabilit\'es suivantes: $P(X > 100)$, $P(X \leq 200)$, $P(100 < X \leq 200)$
+%  \item Sachant qu'on est \`a la fin du mois, calculez $P(X > 100| Y > 21)$, $P(X \leq 300 | Y > 21)$
+%  \item Sachant qu'on est au d\'ebut du mois, calculez $P(X > 100| Y \leq 10)$, $P(X \leq 300 | Y \leq 10)$
+%  \item En utilisant le th\'eor\`eme de Bayes, calculez la probabilit\'e qu'on soit en d\'ebut du mois, sachant que le nombre de ventes est sup\'erieur \`a 200, 
+%  en utilisant $P(X>200|Y \leq 10)$.
+%  \item V\'erifiez le r\'esultat pr\'ec\'edent en utilisant la loi conjointe $p_{X,Y}$.
+% \end{enumerate}
+
+
+\end{document}
+
+% End Of File
+

@@ -1,0 +1,123 @@
+\documentclass[a4paper, 8pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.5cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textwidth}{155mm}
+\setlength{\oddsidemargin}{2mm}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{D.~Fourer, L. Lagon}
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2023-2024}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2023} 
+\TDHead{\universityname}{\deptname}{R3.12, RCN3 \years}{\large TD1: Fonctions avanc\'ees d'un tableur}
+%\TDHead{DUT TC}{}{\large TIC3: Fonctions avanc\'ees d'un tableur}
+%-------------------------------------------------------------------
+%\underline{Objectifs:} Ma\^itriser un logiciel de tableur
+
+\section{Mise en place de l'environnement de travail} %% 1h, 1h30
+
+%% import / export csv, maitrise des formats Libreoffice/Excel
+%% Mise en page dans l'environnement excel
+
+%% import d'un fichier csv:   donnee / import fichier txt
+\exost Cr\'eez un r\'epertoire sur le bureau portant le nom \verb? TD1_NOM_PRENOM ? Vous y d\'eposerez le contenu
+de l'archive contenant les fichiers du TD disponible sur \url{http://fourer.fr/Ens/2324/RCN3/td_excel1.zip} que vous prendrez 
+soin de d\'ecompresser.
+%Assurez vous que vous parvenez \`a ouvrir le fichier.
+
+\exost Ouvrez le fichier \verb? classe.csv ? avec un \'editeur de texte (e.g. Notepad). \`A quoi ce format
+correspond-il? Quels sont les caract\`eres qui permettent de dissocier chaque champ de valeur?
+
+\exost Ouvrez le fichier \verb? classe.csv ?  avec le logiciel tableur de votre choix (Libreoffice Calc ou Microsoft Excel)
+et v\'erifiez que le contenu s'affiche correctement. Vous devrez d'abord d\'efinir le format du fichier csv permettant de dissocier 
+chaque cellule (s\'eparateurs).
+
+\exost Maintenant ouvrez le fichier \verb? coefficients.csv ? et importez son contenu dans une nouvelle feuille de calcul.
+Vous prendrez le soin de donner un nom \`a chaque feuille de calcul (e.g. ``notes \'etudiants'' et ``coefficients des mati\`eres'').
+
+\exost Effectuez un tri des lignes par ordre alphab\'etique des noms de famille. %(ordre lexicographique croissant)
+Assurez vous que la premi\`ere ligne contenant les titres est inchang\'ee et que chaque nom conserve bien les informations correspondantes.
+Vous pourrez comparer le r\'esultat obtenu avec le contenu du fichier csv d'origine.
+
+\exost Mettez en page vos feuilles de calcul excel en ins\'erant des lignes de s\'eparations et en agrandissant les titres.
+V\'erifiez le format de chaque cellule et en particulier les champs correspondant aux dates de naissance.
+Figez la premi\`ere ligne contenant les titres des colonnes afin que celle-ci reste visible m\^eme lorsque l'\'ecran d\'efile vers le bas.
+
+\exost Enregistrez votre travail dans un nouveau fichier \verb? classe.xlsx ?. Vous vous assurerez que le fichier porte bien l'extension
+XLSX et qu'il contient bien l'ensemble des modifications effectu\'ees quand vous l'ouvrez avec Libreoffice Calc ou Microsoft Excel.
+
+\exost Essayez d'ouvrir le m\^eme fichier avec Libreoffice Calc et avec Microsoft Excel. Remarquez vous des diff\'erences?
+
+\clearpage
+
+\section{Formules math\'ematiques} %%duree 30min, 1h maxi
+
+\exost Ins\'erez une nouvelle colonne avant la colonne \verb? NOM ? que vous nommerez \verb? ID ? (identifiant).
+Affectez un num\'ero distinct \`a chaque \'etudiant. Vous commencerez par affecter un nombre au premier \'etudiant
+puis vous appliquerez la formule $=x+1$ \`a l'\'etudiant suivant ($x$ repr\'esente le code de la cellule associ\'e \`a l'ID pr\'ec\'edent).
+En utilisant la fonction copier-coller, vous appliquerez cette formule \`a l'ensemble des \'etudiants.
+
+\exost Ins\'erez une nouvelle colonne que vous appellerez \verb? AGE ?. En utilisant la fonction \verb?DATEDIF()?,
+calculez l'age de chaque \'etudiant \`a partir de sa date de naissance. Si vous le souhaitez, vous pourrez utiliser la fonction
+\verb?MAINTENANT()? qui retourne la date du jour.
+
+\exost Ins\'erez une nouvelle colonne apr\`es la derni\`ere note que vous appellerez \verb? MOYENNE ?. 
+Vous ins\'ererez la moyenne pour l'ensemble des mati\`eres de chaque \'el\`eve dans cette colonne en utilisant 
+la fonction \verb? =MOYENNE(x:y) ? o\`u $x$ et $y$ sont respectivement les codes de la premi\`ere et de la derni\`ere 
+cellule prise en compte dans le calcul.
+
+%%duree 30min, 1h maxi
+\exost Ajoutez une nouvelle colonne \verb? MEDIANE ? puis calculez la note m\'ediane pour chaque \'etudiant. 
+Vous pourrez rechercher la fonction correspondante en utilisant l'assistant (bouton ``Fx'').
+
+\exost Ajoutez une nouvelle colonne \verb? MOYENNE PONDEREE ? Pour cela vous impl\'ementerez la formule suivante:
+
+\begin{equation}
+ \bar{x} = \frac{\sum_i c_i x_i}{\sum_i c_i} = \frac{c_1 x_1 + c_2 x_2 + ...}{c_1 + c_2 + ...}
+\end{equation}
+
+o\`u les $c_i$ correspondent aux coefficients de chaque mati\`ere que vous r\'ecup\'ererez dans la seconde feuille de calcul et
+les $x_i$ correspondent aux notes obtenues pour chaque mati\`ere $i$.
+
+\exost Utilisez la fonction \verb? RANG() ? pour afficher le classement de chaque \'etudiant en fonction de sa moyenne pond\'er\'ee
+dans une nouvelle colonne que vous ajouterez.
+
+
+\exost Ajoutez une nouvelle ligne en bas de page que vous intitulerez: ``Total des effectifs''.
+Vous calculerez pour l'ensemble des \'etudiants la moyenne, la m\'ediane et l'\'ecart type de chaque mati\`ere ainsi que de la moyenne pond\'er\'ee.
+Pour cela vous pourrez appliquer des formules matricielles pour l'ensemble des notes.
+
+%\section{Graphiques et } %%duree 30min, 1h maxi
+
+\textbf{BONUS:} Ins\'erez un graphique en permettant de visualiser la r\'epartition F/G, l'\^age et la r\'epartition des notes.
+
+\end{document}
+
+% End Of File
+

@@ -1,0 +1,110 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.5cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textwidth}{155mm}
+\setlength{\oddsidemargin}{2mm}
+
+\usepackage{eurosym}
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+
+\newif\ifcorrection
+\correctiontrue   %% comment for student version
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer}
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2018-2019}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2018} 
+\TDHead{\universityname}{\deptname}{UE31 M3108C, \years}{\large TD2: Fonctions avanc\'ees d'un tableur}
+%\TDHead{DUT TC}{}{\large TIC3: Fonctions avanc\'ees d'un tableur}
+%-------------------------------------------------------------------
+
+
+%% Tableau crois\'e dynamique /  Graphique
+
+
+\exost R\'ecup\'erez le fichier \url{http://www.fourer.fr/Ens/1819/TIC/classes.xls} et ouvrez le avec Excel/Libreoffice.
+Vous pourrez comparer le r\'esultat avec les valeurs calcul\'ees lors du pr\'ec\'edent TD.
+ \ifcorrection
+ \textcolor{red}{Il s'agit d'une extraction de la solution du TD1 sans les formules}
+ \fi
+ \begin{enumerate}
+  \item \`A partir du nouveau fichier, cr\'eez un tableau crois\'e dynamique (sur une nouvelle feuille) permettant d'afficher la moyenne des filles (F) et celle 
+  des gar\c{c}ons (G) pour chaque mati\`ere dans un tableau. Remarquez vous une diff\'erence significative?
+  \item \`A partir des m\^eme donn\'ees, cr\'eez un graphique en battons permettant de comparer les moyennes des deux groupes (filles/gar\{c}on).
+  \item Fa\^ites la m\^eme chose en fonction de l'\^age (tableaux et graphiques crois\'es dynamique).
+ \end{enumerate}
+
+ %%TODO capture resultat
+
+%% Condition / recherche
+
+\exost Dans une entreprise, les commerciaux obtiennent une prime en fonction du r\'esultat
+qu'ils ont fait sur l'ann\'ee. Si leur r\'esultat est inf\'erieur \`a une certaine limite (11 500 \euro) dans l'exemple cellule B1),
+ils n'ont aucune prime. S'il est sup\'erieur, ils ont une prime correspondant \`a un pourcentage (3,2\%) dans
+l'exemple cellule F1) de leur r\'esultat. Par ailleurs, si un commercial n'a pas obtenu de prime mais a pourtant
+fait un r\'esultat sup\'erieur \`a une 2\ieme limite (10 500 \euro dans l'exemple cellule D1), alors il m\'erite d'\^etre 
+encourag\'e.
+
+\centering\includegraphics[width=0.7\textwidth]{img/exemple.jpg}
+
+\textbf{Attention:} Les formules que vous utilisez doivent continuer \`a fonctionner si les valeurs des cellules B1, D1, F1 changent.
+
+\begin{enumerate}
+ \item Dans la ligne 5 \og{}Montant prime\fg{}, calculez le montant de la prime pour chaque commercial.
+ \ifcorrection
+ \textcolor{red}{\verb?=IF(B4>B1,0.032*B4)? (fonction SI en Fr)}
+ \fi
+ \item Dans la ligne 6 \og{}A encourager\fg{}, affichez \og{}oui\fg{} si le commercial se trouve dans ce cas, et rien sinon (rien est une cha\^ine vide " ").
+ \ifcorrection
+ \textcolor{red}{\verb?=IF(B4<D1,"OUI","")?   }
+ \fi
+ \item Dans la ligne 8 \og{}La prime de:\fg{}, choisissez le nom d'un commercial de la ligne 3, \'ecrivez le en B8, ajoutez la formule ad\'equate
+ dans la cellule D8 pour faire appara\^itre le montant de la prime du commercial choisi. On pourra trouver des fonctions utiles dans la biblioth\`eque \og{}recherche et matrices\fg{}.
+ \ifcorrection
+ \textcolor{red}{\verb?=HLOOKUP(B7,B3:F5,3)?   (RECHERCHEH en Fr)}
+ \fi
+ \item Limitez en cellule B8 la saisie du nom \`a la liste des commerciaux (menu donn\'ees, validation).
+ \ifcorrection
+ \textcolor{red}{data/validity/cell range  (source: B3:F3) }
+ \fi
+ item Mettre en forme votre tableau: format de nombre et bordures.
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}
+
+% End Of File
+

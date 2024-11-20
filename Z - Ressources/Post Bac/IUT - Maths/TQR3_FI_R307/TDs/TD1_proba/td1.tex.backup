@@ -1,0 +1,351 @@
+\documentclass[a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.5cm}
+\setlength{\topmargin}{-1cm}
+\setlength{\textwidth}{155mm}
+\setlength{\oddsidemargin}{2mm}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\input{definitions}
+
+\newif\ifcorrection
+\correctiontrue   %% Final version
+%\correctionfalse   %% Reviewer's version
+
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S3)}
+\newcommand{\years}{2019-2020}
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer}
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2019} 
+\TDHead{\universityname}{\deptname}{UE31 M3104C, \years}{\large TD1: D\'enombrement et probabilit\'es}
+%-------------------------------------------------------------------
+
+
+\underline{Rappels:} 
+
+Factorielle: $n! = 1\times 2 \times \cdots \times n$\\
+Combinaisons: $C_n^k = \frac{n!}{k! (n-k)!}$\\
+Arrangements: $A_n^k = \frac{n!}{(n-k)!}$\\
+Permutations: $P_n = A_n^n = n!$
+
+% \begin{table}
+%  \begin{tabular}{l l l}
+%  \hline
+%  avec ordre 	& avec remise 	& # de cas \\
+%  \hline
+%  \hline
+%  non		& non		& $C_n^k$ \\
+%  \hline
+%  oui		& non		& $A_n^k$ \\
+%  \hline
+%  non		& oui		& $C_{n+k-1}^k$ \\
+%  \hline
+%  oui		& oui		& $C_{n+k-1}^k$ \\
+% \end{tabular}
+% \caption{D\'enombrement pour $k$ tirages de $n$ \'el\'ements distincts.}
+% \end{table}
+
+\exost
+On consid\`ere que l'on dispose de l'alphabet latin (sans accent) de 26 lettres.
+\begin{enumerate}
+ \item Combien de mots diff\'erents peut on \'ecrire en utilisant toutes les lettres du mot \og{}facile\fg{}?
+   \ifcorrection
+ \textcolor{red}{
+ ``Facile'' s'\'ecrit avec 6 lettres, donc il existe $P_6=6!=720$ permutations possibles.
+ }
+ \fi
+ \item Combien de mots diff\'erents de exactement 6 lettres peut on \'ecrire avec tout l'alphabet? (on autorise les r\'ep\'etitions)
+   \ifcorrection
+ \textcolor{red}{
+ On consid\`ere un tirage ordonn\'e de 6 \'el\'ement avec remise, soit $26^6 = 308~915~776$ mots possibles.
+ }
+ \fi
+ \item Combien de mots diff\'erents de exactement 6 lettres peut on \'ecrire sans r\'ep\'etition?
+   \ifcorrection
+ \textcolor{red}{
+ On consid\`ere un tirage ordonn\'e de 6 \'el\'ement sans remise, soit $A_{26}^6 = \frac{26!}{(26-6)!} = 165~765~600$ mots possibles.
+ }
+ \fi
+ \item Combien de mots diff\'erents de 5 lettres ou moins peut on \'ecrire sans r\'ep\'etition (dans le m\^eme mot)?
+   \ifcorrection
+ \textcolor{red}{
+ On consid\`ere la somme de tous les tirage ordonn\'es de 5 \'el\'ements ou moins sans remise, soit $A_{26}^1 + A_{26}^2 + A_{26}^3 + A_{26}^4 + A_{26}^5 = 26 + 26\times 25 + 26\times 25\times 24 + 26\times 25\times 24\times 23 + A_{26}^5 = 8~268~676$ mots possibles.
+ }
+ \fi
+ \item On tire d\'esormais au hasard 3 lettres dans l'ordre et sans r\'ep\'etition. Quelle est la probabilit\'e d'obtenir le mot \og{}IUT\fg{} si tous les tirages sont \'equiprobables?.
+  \ifcorrection
+  \textcolor{red}{
+   On consid\`ere le nombre d'arrangements de 3 lettres parmi 26 lettres: $\card{\Omega}=A_{26}^3=\frac{26!}{(26-3)!} = 15~600$.\\
+   Si on note $A$ l'\'ev\'enement $\{\text{``obtenir le mot IUT''} \}$, alors $P(A) = \frac{1}{15~600}$
+  }
+  \fi
+\end{enumerate}
+
+
+
+\exost 
+On propose \`a un examen un questionnaire \`a choix multiples (QCM) avec 8 questions.
+Pour chaque question, il y a 3 r\'eponses possibles dont une seule est correcte.
+Le candidat d\'ecide de r\'epondre au hasard en ne cochant qu'une seule case \`a chaque question.
+\begin{enumerate}
+ \item Combien il y a-t-il de fa\c{c}ons diff\'erentes de remplir le questionnaire?
+  \ifcorrection
+ \textcolor{red}{
+  On applique la formule d'un choix de 5 \'el\'ements ordonn\'es parmis 3 avec remise:
+  Il y a donc $\card{\Omega} = 3^8= 6561$ choix possibles.
+ }
+ \fi
+ \item Combien de grilles diff\'erentes ne comportent qu'une seule r\'eponse fausse.
+  \ifcorrection
+ \textcolor{red}{
+ Pour chaque question il y a 2 r\'eponses fausses. En supposant, toutes les autres r\'eponses justes, on fait la somme des r\'eponses fausses
+ contenues dans le QCM, soit $2\times 8 = 16$ grilles diff\'erentes avec une seule faute.
+ }
+ \else
+ \fi
+ \item Combien de grilles diff\'erentes possibles sont enti\`erement fausses?
+ \ifcorrection
+ \textcolor{red}{
+ Pour chaque question il y a 2 r\'eponses fausses. En supposant, toutes les autres r\'eponses justes, on fait la somme des r\'eponses fausses
+ soit $2^8 = 256$ grilles diff\'erentes enti\`rement fausses.
+ }
+  \else
+ \fi
+  \item Combien de grilles diff\'erentes possibles ont au moins une bonne r\'eponse?
+  \ifcorrection
+ \textcolor{red}{
+ On note $A$ l'\'ev\'enement $\{\text{``La grille est enti\`erement fausse''}\}$, donc $A^c = \{ \text{``La grille contient une bonne r\'eponse''}\}$.
+ Comme on sait que $\card{A}=256$ (cf. r\'eponse pr\'ec\'edente), alors $\card{A^c} = 6561-256 = 6305$.
+ }
+ \else
+ \fi
+\end{enumerate}
+
+
+
+%% Denombrement
+\exost
+Les membres d'une association de 20 personnes (13 hommes et 7 femmes) souhaitent constituer un bureau de 3 personnes (un(e) pr\'esident(e), un(e) tr\'esorier(e)
+et un(e) secr\'etaire).
+\begin{enumerate}
+ \item Combien de bureaux (groupe de 3 personnes) diff\'erents peuvent \^etre constitu\'es \`a partir de ces 20 personnes?
+ \ifcorrection
+ \textcolor{red}{
+  On applique la formule d'un tirage ordonn\'e de 3 \'el\'ements parmis 20 $A_{20}^3 = \frac{20!}{17!} = 20 \times 19 \times 18 = 6840$.
+  }
+  \else
+ \fi
+ \item Combien de bureaux diff\'erents ayant une femme pr\'esidente peuvent \^etre constitu\'es?
+  \ifcorrection
+  \textcolor{red}{
+  On applique la formule d'un tirage ordonn\'e de 2 \'el\'ements parmis 19: $A_{19}^2 = \frac{19!}{17!} = 19 \times 18  = 342$.
+  Comme il y a 7 femmes, alors au total il y a $7 \times 342 = 2394$ bureaux possibles avec 1 femme pr\'esidente.
+  (et donc $13 \times 342 = 4446$ bureaux avec 1 homme pr\'esident). On v\'erifie que $2394 + 4446 = 6840$ correspond au total.  
+  }
+ \fi
+ \item En supposant \'equiprobable le choix de chaque candidat. Quelle est la probabilit\'e pour que le bureau soit compos\'e d'au moins une femme?
+  \ifcorrection
+  \textcolor{red}{
+  %On note $\Omega$ l'ensemble des bureaux possibles tel que $\card{\Omega} = C_{20}^3 = 1140$.
+  -On note $F$ l'\'ev\'enement, $\{\text{``une femme est dans le bureau''}\}$ et son compl\'ementaire $F^c=\{\text{``Il n'y a pas de femme dans le bureau''} \}$.
+  Le tirage de chaque candidat est ind\'ependant donc:
+  $P(F^c) = \frac{13}{20} \frac{12}{19} \frac{11}{18} = \frac{1716}{6840} \approx 0,25$.
+  Donc $P(F) = 1 - P(F^c) \approx 0,75$.\\
+  -Autre solution: Il y a $A_{13}^3$ arrangements de 3 hommes, donc $P(F^c) = \frac{A_{13}^3}{A_{20}^3} = \frac{\frac{13!}{(13-3)!}}{\frac{20!}{(20-3)!}}=\frac{13\times 12 \times 11}{20\times 19 \times 18}\approx 0,25$\\
+  -Autre solution: On \'enum\`ere toutes les combinaisons (avec au moins 1F): 3F: $C_7^3$, 2F1M: $C_7^2 C_{13}^1$, 1F2M: $C_7^1C_{13}^2$, donc
+  $P(F) = \frac{C_7^3 + (C_7^2C_{13}^1) + (C_7^1C_{13}^2)}{C_{20}^3} = \frac{854}{1140} \approx 0,75$.
+  }
+  \else
+ \fi
+\end{enumerate}
+
+\exost 
+Un sac contient 13 boules noires et 2 boules rouges. Combient faut il en tirer simultan\'ement
+pour que la probabilit\'e d'obtenir au minimum une boule rouge soit sup\'erieure \`a $\frac{6}{7}$?
+
+\ifcorrection
+  \textcolor{red}{
+  On note $x$ l'inconnue (le nombre de boules tir\'ees) et $A^c$ l'\'ev\'enement compl\'ementaire $\{\text{``on ne tire aucune boule rouge''}\}$.
+  On a $\card{A^c} = C_{13}^x$ et $\card{\Omega} = C_{15}^x$.\\
+  Il faut alors r\'esoudre l'in\'equation:
+  $P(A) = 1 - \frac{C_{13}^x}{C_{15}^x} > \frac{6}{7}$.
+  On a donc:
+  \begin{align}
+   \frac{1}{7} 			&> \frac{\frac{13!}{x!(13-x)!}}{\frac{15!}{x!(15-x)!}} = \frac{13!(15-x)!}{15!(13-x)!} = \frac{(15-x)(14-x)}{15\times 14}\\
+   \frac{15 \times 14}{7}	&> x^2 - 29x + 210\\
+   0 				&> x^2 - 29x + 180
+  \end{align}
+  On pose $\Delta = b^2 - 4 ac$ ($b=-29$, $a=1$ et $c=180$) donc $\Delta = 121 = 11^2$.\\
+  On a donc (la plus petite solution) $x>\frac{-b-\sqrt{\Delta}}{2a} = \frac{29-11}{2} = 9$.\\
+  L'autre solution $x_2>\frac{-b+\sqrt{\Delta}}{2a} = 20$ est bien plus grande que 9 mais sans int\'er\^et car on cherche le nombre
+  minimum de tirage.
+  }
+  \else
+ \fi
+ 
+ 
+% Vous pourrez utiliser la fonction \verb? [s,fs,nbit] = wavread(filename) ? qui charge un fichier wav dans un vecteur $s$,
+% r\'ecup\`ere la fr\'equence d'\'echantillonnage $f_s$ et le nombre de bits par \'echantillon.\\
+% Vous pourrez utiliser les fonctions \verb? plot() ? et \verb? soundsc() ? respectivement pour visualiser et 
+% \'ecouter les \'echantillons contenus dans un vecteur.
+% 
+% %Pour vous aider, vous pourrez enregistrer toutes vos commandes dans un fichier \verb? mon_script.m ?, vous pourrez alors ex\'ecuter le TD %par l'appel \`a la commande \verb? mon_script? via l'interpr\'eteur Matlab.\\
+% 
+% \exost Un m\'elange lin\'eaire instantan\'e entre plusieurs sources peut s'exprimer ainsi:
+% \begin{equation}
+%  s_{\text{mix}} = \displaystyle\sum_{i} a_i\cdot s_i(t)
+% \end{equation}
+% En utilisant la matrice des sources sonores, cr\'eez le m\'elange instantan\'e pour $a = (0.7,0.5,0.7,0.6)$. \'Ecoutez le r\'esultat
+% obtenu. Essayez avec d'autres valeurs de $a$. 
+% 
+% \subsection{analyse et synth\`ese spectrale}
+% 
+% %% calcul du spectrogramme et affichage
+% \exost Cr\'eez le fichier \verb? spectrogram.m ? qui contient la d\'eclaration: \\
+% \verb? function [Sw] = spectrogram(s,w, rec)? qui calcule la matrice $S_w$, c'est \`a dire le spectrogramme du signal $s$ 
+% en utilisant la fen\^etre d'analyse $w$ de longueur \verb? N=length(w)?, avec un recouvrement $1/\text{rec}$. 
+% (on choisira par d\'efaut $\text{rec}=3$ et la fen\^etre de Hann). Vous utiliserez la fonction \verb? fft()? pour calculer la transform\'ee de Fourier.
+% Pour extraire les trames, il vous faudra calculer les indices $i_\text{deb}$ et $i_\text{fin}$ correspondants 
+% \`a la trame courante.\\
+% Vous pourrez alors calculer le spectre d'amplitude et de phase \`a l'aide des fonction \verb? A = abs(Sw)?, \verb?P = angle(Sw)? et l'afficher avec \verb?imagesc()?.
+% 
+% %%resynth\`ese 
+% \exost Impl\'ementez la fonction \verb? [s] = inv_spectrogram(Sw, w, rec)? qui synth\'etise le signal $s$ \`a partir de son spectrogramme.
+% Vous utiliserez la fonction \verb?ifft(Sw)? qui calcule transform\'ee de Fourier inverse. V\'erifiez que vous obtenez bien le m\^eme signal
+% en affichant la diff\'erence entre le signal d'origine et le signal reconstruit.
+% 
+% 
+% %. V\'erifiez que vous obtenez bien le m\^eme signal avec \verb? plot()? et \verb? soundsc(s,fs)? qui permet d'\'ecouter le r\'esultat %obtenu. Vous pourrez \'eventuellement \'ecrire le r\'esultat dans un fichier \`a l'aide de la fonction \verb? wavwrite(filename, s, fs)?
+% 
+% 
+% \section{Spatialisation}
+%  
+% Pour chacune des m\'ethodes propos\'ees, vous commencerez par spatialiser une seule source isol\'ee en essayant respectivement
+% les angles $ \{0, -\frac{\pi}{4}, \frac{\pi}{2}\}$ puis vous cr\'eerez un m\'elange instantan\'e \`a partir des sources 
+% spatialis\'ees en prenant par exemple: $\theta = (0, -\frac{\pi}{7}, \frac{\pi}{6}, \frac{\pi}{3})$.
+% 
+% \subsection{amplitude panning}
+% 
+% C'est une m\'ethode fr\'equemment utilis\'e en studio d'enregistrement qui ne repose sur aucun mod\`ele physique.
+% Elle permet de simuler la position d'une source \`a un angle $\theta \in [-\frac{\pi}{2}, \frac{\pi}{2}]$ en modifiant l'amplitude
+% de la source sonore sur les canaux gauche/droite relativement \`a $\theta$:
+% 
+% \begin{align}
+%  s_g(t) &= \cos( \frac{\theta}{2}+\frac{\pi}{4} ) \cdot s(t)\\
+%  s_d(t) &= \sin( \frac{\theta}{2}+\frac{\pi}{4} ) \cdot s(t)
+%  \label{eq:panning}
+% \end{align}
+% 
+% \exost Cr\'eez une fonction \verb? [sg,sd] = amp_panning(s, theta)? qui calcule les signaux $s_g$ et $s_d$ en fonction de $\theta$.
+% Affichez puis \'ecoutez le r\'esultat obtenu avec \verb? soundsc()? (vous devrez d'abord cr\'eer une matrice $L\times 2$ en 
+% concat\'enant $s_g$ et $s_d$ et en transposant la matrice obtenue: \verb?[sg;sd]'?. Cr\'eez un m\'elange en appliquant les angles
+% $\theta_i$ respectivement pour chacune des sources. \'Ecoutez le m\'elange $s_g-s_d$. Commentez le r\'esultat obtenu.
+% 
+% 
+% \subsection{spatialisation binaurale par filtrage HRIR (Head-Related Impulse Response)}
+% 
+% On se propose maintenant d'appliquer un filtrage li\'e \`a un mod\`ele perceptif pour calculer les signaux $s_g$ et $s_d$.
+% Les signaux sont obtenus en appliquant un produit de convolution entre le signal monophonique
+% et la r\'eponse impulsionnelle du filtre correspondant d\'efini ainsi:
+% 
+% \begin{align}
+%  s_g(t) &= (h_{g,\theta} * s)(t) =  \displaystyle\int_{-\infty}^{+\infty} s(t - \tau) h_{g,\theta}(\tau)\,d\tau\\
+%  s_d(t) &= (h_{d,\theta} * s)(t) =  \displaystyle\int_{-\infty}^{+\infty} s(t - \tau) h_{d,\theta}(\tau)\,d\tau %\label{eq:spat_model}
+% \end{align}
+% 
+% \noindent avec $h_{\cdot,\theta}$ le filtre d\'efini pour un angle $\theta$.
+% 
+% \exost Choisissez un fichier mod\`ele (.mat) parmi ceux propos\'es (cf. dossier \verb? model?) et importez les matrices \verb? left? et \verb?right? 
+% dont chaque colonne correspond \`a la r\'eponse impulsionnelle du filtre $h_\theta$ pour $\theta$ allant de 0 \`a 355 par pas de $5$ degr\'es.
+% \'Ecrivez la fonction \verb? [sg,sd] = spatialize_model(s, theta)? qui calcule $s_g$ et $s_d$. Vous pourrez utiliser la fonction \verb? conv(a,b)?
+% qui applique un produit de convolution entre les vecteurs $a$ et $b$.\\D'autres mod\`eles HRIR sont t\'el\'echargeables 
+% \`a l'adresse suivante: \url{http://interface.cipic.ucdavis.edu/sound/hrtf.html}.
+% 
+% %[-175, 180], 0. deg = 36
+% 
+% 
+% \subsection{spatialisation binaurale par mod\'elisation param\'etrique}
+% 
+% On souhaite d\'efinir un filtre HRTF (Head-Realated Transfert function) \`a partir des indices $\text{ITD}$ (Interaural Time Differences)
+% et $\text{ILD}$ (Interaural Level Differences) qui correspondent respectivement \`a une mesure perceptive de diff\'erence d'intensit\'e
+% en amplitude et au retard mesur\'e entre $s_g$ et $s_d$. La spatialisation est d\'efinie ainsi dans le domaine fr\'equentiel:
+% 
+% \begin{align}
+%  S_g(f) &= S \cdot 10^{-\Delta_a(f)/2} \exp\left(-i \Delta_\phi(f) \right)\\
+%  S_d(f) &= S \cdot 10^{+\Delta_a(f)/2} \exp\left(+i \Delta_\phi(f) \right)
+%  \label{eq:spat_mouba}
+% \end{align}
+% 
+% \noindent avec:
+% 
+% \begin{align}
+%  \Delta_a(f)    &= \text{ILD}_{\theta}(f) / 20\\
+%  \Delta_\phi(f) &= \text{ITD}_{\theta}(f)\cdot 2\pi f %\label{eq:delta_mouba}
+% \end{align}
+% 
+% \noindent  et:
+% 
+% \begin{align}
+%  \text{ITD}(\theta, f)   &= \beta(f)  \cdot \frac{r (\sin \theta )}{c} \label{eq:ild_itd}\\
+%  \text{ILD}(\theta, f)   &= \alpha(f) \cdot \sin(\theta) 
+% \end{align}
+% 
+% On choisira $r=0.0725 \text{m}$ le rayon de la t\^ete, $c=335 \text{m}.\text{s}^{-1}$ la vitesse du son. $\alpha(f)$ et $\beta(f)$ sont des fonctions
+% d'\'echelle relatives respectivement \`a $\text{ILD}$ et $\text{ITD}$.
+% 
+% \exost \'Ecrivez la fonction \verb? [sg, sd] = spat_param(s, theta )? qui calcule $s_g$ et $s_d$ en utilisant les indices ILT et ITD d\'efinis ci-dessus.
+% Vous pourrez utiliser les fonction \verb? alpha_spat(N)? et \verb? beta_spat(N)? qui retournent un vecteur de taille $N$ correspondant aux fonctions $\alpha(f)$ et $\beta(f)$.
+% 
+% \exost Comparez les r\'esultats obtenus entre les m\'ethodes (tests d'\'ecoute) pour diff\'erents angles $\theta$. Laquelle, vous semble la plus r\'ealiste?
+% 
+% \section{Localisation binaurale}
+% 
+% La localisation d'une source sonore peut s'effectuer \`a partir de l'estimation des indices ILT et ITD obtenus \`a partir du spectre.\\
+% 
+% On applique les \'etapes suivantes:
+% 
+% \begin{enumerate}
+%  \item on calcule $\text{ILD}(t,f) = 20 \log_{10}\left| \frac{S_d(t,f)}{S_g(t,f)}\right|$. 
+%  \item on estime $\theta_L(t,f) = \arcsin\left(\frac{\text{ILD}(t,f)}{\alpha(f)}\right)$ (on coupera les valeurs $\left|\frac{\text{ILD}(t,f)}{\alpha(f)}\right| > 1$)
+%  \item on estime $\text{ITD}_L$ \`a partir de $\theta_L$ en utilisant l'\'equation (\ref{eq:ild_itd}).
+%  \item on calcule $\text{ITD}_p = \frac{1}{2\pi f}\left( \angle \frac{S_d(t,f)}{S_g(t,f)} + 2\pi p\right)$\\
+%  pour $p_1 = \lfloor pr \rfloor$ et $p_2 = \lceil pr \rceil$ avec \\
+% $pr = f \cdot \text{ITD}_L - \frac{1}{2\pi} \angle \frac{S_d(t,f)}{S_g(t,f)}$
+%  \item $\hat{\theta}(t,f) = \theta_{t,m}$ avec $ m = \arg\min_p( |\theta_L - \theta_{t,p} | )$ et $\theta_{t,p} = \arcsin\left( \frac{c\cdot \text{ITD}_p }{ \beta(f)\cdot r} \right) $
+%  \item on construit un histogramme $h(\theta)$ en accumulant l'\'energie du spectre correspondant en appliquant une gaussienne centr\'ee en $\theta$ et r\'eduite ($\sigma=1$).
+% \end{enumerate}
+% 
+% Ainsi, les angles de chaque source sont donn\'es par les maxima locaux de l'histogramme apr\`es l'application d'un seuillage.
+% 
+% 
+% \exost Impl\'ementez la fonction \verb? [theta] = localize(s,fs)?, Vous pourrez vous aider des fonctions fournies dans l'archive
+% pour le calcul de l'histogramme. Testez votre fonction sur un m\'elange binaural que vous aurez pr\'epar\'e en utilisant par exemple la spatialisation HRIR.
+
+
+\end{document}
+
+% End Of File
+

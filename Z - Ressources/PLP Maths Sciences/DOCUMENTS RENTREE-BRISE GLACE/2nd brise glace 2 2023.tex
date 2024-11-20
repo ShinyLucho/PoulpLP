@@ -1,0 +1,117 @@
+\documentclass[12pt,a4paper,oneside,dvipsnames,table,svgnames,skins,theorems]{report}
+\usepackage{ProfCollege}
+\usepackage[tp]{tmbasev2} %pour le moment placé dans la racine du .tex ... !
+
+
+%%\graphicspath{{C:/Users/Thom/Documents/latex nas/images/}} %chemin du fichier image
+%\graphicspath{{C:/Users/Thomas/latex nas/images/}} %chemin du fichier image
+
+\ordi{fixe} %pour fichier image
+\matierechap{divers} %m pour maths, pc pour physique chimie, rien pour vierge
+\version{1} %1 : PROF   2: ELEVE sans corrigé  3: corrigé des exos sans le cours
+\setcounter{chapter}{0} %compteur de chapitre
+\author{Rentrée 2}
+
+
+
+\begin{document}
+
+\chapter{Verbes de Consignes}
+
+\begin{objectifs}
+
+En groupe de 3 élèves.\\
+\textbf{Partie 1} :
+\begin{itemize}
+\item Lire le recto des flashcard.
+\item Lire le verso des flashcard.
+\item Associer un recto à son verso pour reformer la carte.
+\end{itemize}
+\textbf{Partie 2} :
+\begin{itemize}
+\item En vous aidant des flashcard, Écrire dans la marge pour chaque consigne ci-dessous un verbe d'action qui aurait pu être donné en consigne par l'enseignant.
+\end{itemize}
+
+\end{objectifs}
+
+
+Réponses obtenues dans des copies (certaines sont inventées pour l'exercice, d'autres non !).
+\vspace{0.2cm}
+
+\begin{enumerate}
+\item Il y a 4 coupables potentiels, parmi ces 4 coupables l'un est un homme droitier. Le meurtrier est gaucher. On peut donc conclure que le meurtrier est une femme.
+\item La relation qui donne la vitesse en fonction de $a$ et du temps s'écrit  : $v=\dfrac{0.25a}{t}$
+\item On observe que la température augmente jusqu'à 11h du matin puis diminue ensuite régulièrement jusqu'à 15h.
+\item Le poids idéal d'un enfant de 6 mois est de \SI{4.2}{\kilo\gram} d'après le graphique.
+\item Les deux valeurs pour $x$ sont $x_1=100$ ou $x_2=-110$. Une vitesse n'étant pas négative, la réponse est $x_1=\SI{100}{\kilo\meter\per\hour}$.
+\item Le poids est : $P=9.81 \times 100 = \SI{981}{\newton}$.
+\item On peut représenter la situation par la figure ci-dessous : 
+\begin{center}
+\begin{Geometrie}[TypeTrace="MainLevee"]
+u:=7mm;
+pair A,B,C;
+A=u*(1,1);
+B-A=u*(5,1);
+C=rotation(B,A,60);
+marque_s:=marque_s/3;
+trace Codelongueur(A,B,B,C,C,A,2);
+trace polygone(A,B,C);
+trace cotationmil(A,C,5mm,20,btex 6 cm etex);
+label.llft(btex A etex,A);
+label.rt(btex B etex,B);
+label.top(btex C etex,C);
+\end{Geometrie}
+\end{center}
+\item Dans un triangle on a le grand côté au carré égal à la somme des carrés des petits côtés : ceci démontre que le triangle est rectangle (réciproque de Pythagore).
+\item Les droites $(d)$ et $(AB)$ sont parallèles.
+\end{enumerate}
+
+
+
+
+
+\newpage
+
+
+%\Cartes[Loop=false,Theme=Verbe, ThemeSol=Action,Trame]{%
+%Déterminer lalongueur manquante. On détaillera la
+%démarche./\Pythagore[Entier,Exact]{ABC}{3}{4}{}%
+%§test/\Pythagore[Exact]{CBA}{5}{12}{}%
+%§test/\Pythagore[Exact]{CBA}{5}{12}{}%
+%
+%}
+
+
+
+\Cartes[Loop=false,Trame,Theme=Verbes,ThemeSol=Action]{%
+\begin{center}
+{\huge CALCULER}
+\end{center}/ Déterminer un résultat à l'aide d'une ou plusieurs opérations effectuées à la main ou à l'aide d'un outil numérique.%
+§ \begin{center}
+{\huge DÉCRIRE}
+\end{center}/ Donner les propriétés de quelque chose par observation. %
+§ \begin{center}
+{\LARGE DÉMONTRER}
+\end{center} /Fournir une preuve pour un résultat que l'on cherchait à obtenir. La preuve pourra être sous diverses formes (calculs, graphique...)%
+§ \begin{center}
+{\huge EN DÉDUIRE}
+\end{center}/ Utiliser un résultat déjà obtenu pour arriver à une conclusion.%
+§ \begin{center}
+{\LARGE REPRÉSENTER}
+\end{center} / Réaliser un schéma ou une autre figure pour expliquer un exemple, un concept.%
+§ \begin{center}
+{\huge EXPRIMER}
+\end{center} / Écrire une formule, un calcul, en utilisant des lettres qui remplacent des grandeurs et qui sont reliées entre elles. %
+§ \begin{center}
+{\huge ÉMETTRE} \\
+ une conjecture\end{center}/Formuler une hypothèse, donner une idée qui devront être expliqués, démontrés.  %
+§ \begin{center}
+{\LARGE DÉTERMINER} \\
+ graphiquement \end{center}/Utiliser un graphique pour trouver la réponse à une question en réalisant une lecture sur ce graphique. %
+§ \begin{center}
+{\LARGE INTERPRÉTER}
+\end{center} /A partir d'un résultat obtenu, le relier à une situation, lui donner du sens. Mise en contexte. %
+}
+
+
+\end{document}

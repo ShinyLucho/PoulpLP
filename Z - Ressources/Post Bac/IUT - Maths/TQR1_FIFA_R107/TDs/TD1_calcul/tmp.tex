@@ -1,0 +1,296 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.8cm}
+\setlength{\topmargin}{-2.5cm}
+\setlength{\textwidth}{165mm}
+\setlength{\oddsidemargin}{0mm}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\input{definitions}
+
+\newif\ifcorrection
+%\correctiontrue   %% avec correction
+\correctionfalse   %% sans correction
+
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S1)}
+\newcommand{\years}{2023-2024}
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer, L. Lagon}
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2022} 
+\TDHead{\universityname}{\deptname}{R1.07, \years}{\large TD1: Calculs et r\'esolution d'\'equations}
+%-------------------------------------------------------------------
+
+
+%\underline{Rappels:} 
+
+%Factorielle: $n! = 1\times 2 \times \cdots \times n$\\
+%Combinaisons: $C_n^k = \frac{n!}{k! (n-k)!}$\\
+%Arrangements: $A_n^k = \frac{n!}{(n-k)!}$\\
+%Permutations: $P_n = A_n^n = n!$
+
+
+%\section{Calculs}
+
+\exost R\'ealiser les calculs suivants sans calculatrice et proposer une forme exacte r\'eduite des expressions suivantes:
+
+\begin{minipage}{0.33\textwidth}
+ \begin{itemize}
+  \item[.] $A =\frac{3}{4} (\frac{2}{3} + \frac{1}{2})$ \ifcorrection \textcolor{red}{$=\frac{7}{8}$}\fi \\   
+  \item[.] $D=-\frac{1}{3} + \frac{2}{8}$ \ifcorrection \textcolor{red}{$=-\frac{1}{12}$}\fi \\
+  \item[.] $G=(x-1)(x^2-3x+\frac{1}{2})$ \ifcorrection \textcolor{red}{$=x^3-4x^2+ \frac{7x}{2} -\frac{1}{2}$}\fi \\ 
+ \end{itemize}
+ %
+\end{minipage}
+%
+\begin{minipage}{0.3\textwidth}
+  \begin{itemize}
+  \item[.] $B=\frac{3}{2\sqrt{3}} + \sqrt{3}$ \ifcorrection \textcolor{red}{$=\frac{3\sqrt{3}}{2}$}\fi \\
+  \item[.] $E=\frac{2}{3} - (\frac{1}{2} + \frac{1}{3})$ \ifcorrection \textcolor{red}{$=-\frac{1}{6}$}\fi \\
+  \item[.] $H=\frac{x^2-2x+1}{x-1}$\ifcorrection \textcolor{red}{$=\frac{(x-1)^2}{x-1}=x-1$}\fi \\
+ \end{itemize}
+\end{minipage}
+%
+\begin{minipage}{0.3\textwidth}
+  \begin{itemize}
+  \item[.] $C=\frac{(2-\sqrt{2})^2}{2\sqrt{2}} + \frac{1}{3}$\ifcorrection\textcolor{red}{$=\frac{9\sqrt{2}-10}{6}$}\fi \\
+  \item[.] $F=-(\frac{x}{2} + \frac{1}{3})^2$ \ifcorrection\textcolor{red}{$=-(\frac{x^2}{4}+\frac{x}{3}+\frac{1}{9})$}\fi \\
+  \item[.] $I=\frac{x^3+3x^2+3x+1}{(x+1)^2}$ \ifcorrection\textcolor{red}{$=\frac{(x+1)^3}{(x+1)^2}=x+1$}\fi \\
+ \end{itemize}
+\end{minipage}
+
+
+
+\exost R\'esoudre les \'equations suivantes. (premier degr\'e \`a une inconnue)
+
+\begin{minipage}{0.33\textwidth}
+ \begin{itemize}
+  \item[(i)] $4x-2 = \frac{2x}{3}$\\
+  \item[(iv)] $(x-3)^2-(x+2)^2 = 0$\\
+ \end{itemize}
+ %
+\end{minipage}
+%
+\begin{minipage}{0.3\textwidth}
+  \begin{itemize}
+  \item[(ii)] $5x-2 = 2x +3$\\
+  \item[(v)] $(2x-3)^2 = (2x+2)^2$\\
+%  \item[.] $H=\frac{x^2-2x+1}{x-1}$
+ \end{itemize}
+\end{minipage}
+%
+\begin{minipage}{0.3\textwidth}
+  \begin{itemize}
+  \item[(iii)] $\frac{2x-1}{x+2} = 5$\\
+  \item[(vi)] $(\frac{x}{2} + \frac{1}{3})^2 = \frac{1}{3} (x+2)^2$ \\
+%  \item[.] $I=\frac{x^3+3x^2+3x+1}{(x+1)^2}$
+ \end{itemize}
+\end{minipage}
+
+\exost R\'esoudre les in\'equations suivantes.
+
+  \begin{center}
+    (i) $2x- 6> 0$. \quad (ii) $3x- 1\leq 5x+ 7$. \quad (iii) $2(x- 3)+ 3(x- 1)\geq 9$ \quad (iv) $(2x- 3)^2< (2x+ 5)^2$.
+  \end{center}
+
+
+\exost R\'esoudre les syst\`emes d'\'equations suivants:
+  \begin{center}
+   (i) $\begin{cases}2x+ 3y &= 5\\
+              -2x+ y &= 1 \end{cases}\quad$%
+   (ii) $\begin{cases} x+ 2y &= 5 \\
+                             2x+ 4y &= 10\end{cases}\quad$%
+   (iii)$\begin{cases} mx_1+ x_2 &= m+ 1 \\
+                                x_1+ mx_2 &= m- 1\end{cases}$ \\
+   (iv) $ \begin{cases}x+ y- 3z&= -2 \\
+                            x+ 2y- z&= -1 \\
+                            -2x- 3y+ z&= 0\end{cases}$
+  \end{center}
+
+\exost R\'esoudre les \'equations suivantes du second degr\'e et en donner une forme factoris\'ee:
+  \begin{center}
+    (i) $x^2+ x- 2= 0$. \quad (ii) $6x^2+ 7x= 5$. \quad (iii) $9x^2+ 49= 42x$. \quad (iv) $x^2= x+ 1$. \quad (v) $x^2+ 2= 2x$.
+  \end{center}
+
+
+  \exost Des \'etudiants du d\'epartement TCJ souhaitent organiser un voyage en bus dans un parc naturel.
+  La location d'un bus pour 40 personnes co\^ute 500 euros et chaque billet d'entr\'ee co\^ute 20 euros.
+  \begin{enumerate}
+   \item Sachant que le d\'epartement comprend 60 \'etudiants et en supposant une participation de 100\% des effectifs, calculez le montant minimum de participation \`a exiger de chaque \'etudiant
+   permettant de couvrir les frais. %% 36,66
+   \item En demandant une participation de 34 euros par \'etudiant, calculez le nombre minimum d'\'etudiants necessaires permettant de couvrir les frais.
+   \item M\^eme question pour une participation de 40 euros.
+  \end{enumerate}
+
+  \exost Une entreprise vend un article au prix de $8$ euros et \`a ce tarif elle en vend $20$ par jour. 
+  Le premier jour, elle a un stock de $10\,000$ articles \`a \'ecouler. Au bout d'un certain nombre de jours, elle organise une promotion sur cet article, 
+  afin d'augmenter ses ventes: au prix de $5$ euros, elle en vend $40$ par jour. Le $300$-i\`eme jour, tout le stock initial a \'et\'e vendu. \\
+  \begin{enumerate}
+   \item D\'eterminer \`a quel jour la promotion a d\'ebut\'e.
+   \item Calculer le chiffre d'affaires total r\'ealis\'e.
+  \end{enumerate}
+ 
+  
+% On dispose de l'alphabet latin sans accent de 26 lettres.
+% \begin{enumerate}
+%  \item Combien de mots diff\'erents peut on \'ecrire en utilisant toutes les lettres du mot \og{}facile\fg{}?
+%    \ifcorrection
+%  \textcolor{red}{
+%  ``Facile'' s'\'ecrit avec 6 lettres, donc il existe $P_6=6!=720$ permutations possibles.
+%  }
+%  \fi
+%  \item Combien de mots diff\'erents de exactement 6 lettres peut on \'ecrire avec tout l'alphabet? (on autorise les r\'ep\'etitions)
+%    \ifcorrection
+%  \textcolor{red}{
+%  On consid\`ere un tirage ordonn\'e de 6 \'el\'ements avec remise, soit $26^6 = 308~915~776$ mots possibles.
+%  }
+%  \fi
+%  \item Combien de mots diff\'erents de exactement 6 lettres peut on \'ecrire sans r\'ep\'etition?
+%    \ifcorrection
+%  \textcolor{red}{
+%  On consid\`ere un tirage ordonn\'e de 6 \'el\'ements sans remise, soit $A_{26}^6 = \frac{26!}{(26-6)!} = 165~765~600$ mots possibles.
+%  }
+%  \fi
+%  \item Combien de mots diff\'erents de 5 lettres ou moins peut on \'ecrire sans r\'ep\'etition (dans le m\^eme mot)?
+%    \ifcorrection
+%  \textcolor{red}{
+%  On consid\`ere la somme de tous les tirages ordonn\'es de 5 \'el\'ements ou moins sans remise, soit $A_{26}^1 + A_{26}^2 + A_{26}^3 + A_{26}^4 + A_{26}^5 = 26 + 26\times 25 + 26\times 25\times 24 + 26\times 25\times 24\times 23 + A_{26}^5 = 8~268~676$ mots possibles.
+%  }
+%  \fi
+%  \item On tire d\'esormais au hasard 3 lettres non ordonn\'e sans r\'ep\'etition. Quelle est la probabilit\'e de d'obtenir le mot \og{}IUT\fg{} si tous les tirages sont \'equiprobables?
+%   \ifcorrection
+%   \textcolor{red}{
+%    On consid\`ere le nombre d'arrangements de 3 lettres parmi 26 lettres: $\card{\Omega}=A_{26}^3=\frac{26!}{(26-3)!} = 15~600$.\\
+%    Si on note $A$ l'\'ev\'enement $\{\text{``obtenir le mot IUT''} \}$, alors $P(A) = \frac{1}{15~600}$
+%   }
+%   \fi
+% \end{enumerate}
+% 
+% 
+% 
+% \exost 
+% On propose \`a un examen un questionnaire \`a choix multiples (QCM) avec 8 questions.
+% Pour chaque question, il y a 3 r\'eponses possibles dont une seule est correcte.
+% Le candidat d\'ecide de r\'epondre au hasard en ne cochant qu'une seule case \`a chaque question.
+% \begin{enumerate}
+%  \item Combien il y a-t-il de fa\c{c}ons diff\'erentes de remplir le questionnaire?
+%   \ifcorrection
+%  \textcolor{red}{
+%   On applique la formule d'un choix de $k=8$ \'el\'ements ordonn\'es parmis 3 avec remise:
+%   Il y a donc $\card{\Omega} = 3^8= 6561$ choix possibles.
+%  }
+%  \fi
+%  \item Combien de grilles diff\'erentes ne comportent qu'une seule r\'eponse fausse.
+%   \ifcorrection
+%  \textcolor{red}{
+%  Pour chaque question il y a 2 r\'eponses fausses. En supposant, toutes les autres r\'eponses justes, on fait la somme des r\'eponses fausses
+%  contenues dans le QCM, soit $2\times 8 = 16$ grilles diff\'erentes avec une seule faute.
+%  }
+%  \else
+%  \fi
+%  \item Combien de grilles diff\'erentes possibles sont enti\`erement fausses?
+%  \ifcorrection
+%  \textcolor{red}{
+%  Pour chaque question il y a 2 r\'eponses fausses. En supposant, toutes les autres r\'eponses justes, on fait la somme des r\'eponses fausses
+%  soit $2^8 = 256$ grilles diff\'erentes enti\`rement fausses.
+%  }
+%   \else
+%  \fi
+%   \item Combien de grilles diff\'erentes possibles ont au moins une bonne r\'eponse?
+%   \ifcorrection
+%  \textcolor{red}{
+%  On note $A$ l'\'ev\'enement $\{\text{``La grille est enti\`erement fausse''}\}$, donc $\bar{A} = \{ \text{``La grille contient une bonne r\'eponse''}\}$.
+%  Comme on sait que $\card{A}=256$ (cf. r\'eponse pr\'ec\'edente), alors $\card{\bar{A}} = 6561-256 = 6305$.
+%  }
+%  \else
+%  \fi
+% \end{enumerate}
+% 
+% 
+% 
+% %% Denombrement
+% \exost
+% Les membres d'une association de 20 personnes (13 hommes et 7 femmes) souhaitent constituer un bureau de 3 personnes (un(e) pr\'esident(e), un(e) tr\'esorier(e)
+% et un(e) secr\'etaire).
+% \begin{enumerate}
+%  \item Combien de bureaux (groupe de 3 personnes) diff\'erents peuvent \^etre constitu\'es \`a partir de ces 20 personnes?
+%  \ifcorrection
+%  \textcolor{red}{
+%   On applique la formule d'un tirage ordonn\'e de 3 \'el\'ements parmis 20 $A_{20}^3 = \frac{20!}{17!} = 20 \times 19 \times 18 = 6840$.
+%   }
+%   \else
+%  \fi
+%  \item Combien de bureaux diff\'erents ayant une femme pr\'esidente peuvent \^etre constitu\'es?
+%   \ifcorrection
+%   \textcolor{red}{
+%   On applique la formule d'un tirage ordonn\'e de 2 \'el\'ements parmis 19: $A_{19}^2 = \frac{19!}{17!} = 19 \times 18  = 342$.
+%   Comme il y a 7 femmes, alors au total il y a $7 \times 342 = 2394$ bureaux possibles avec 1 femme pr\'esidente.
+%   (et donc $13 \times 342 = 4446$ bureaux avec 1 homme pr\'esident). On v\'erifie que $2394 + 4446 = 6840$ correspond au total.  
+%   }
+%  \fi
+%  \item En supposant \'equiprobable le choix de chaque candidat. Quelle est la probabilit\'e pour que le bureau soit compos\'e d'au moins une femme?
+%   \ifcorrection
+%   \textcolor{red}{
+%   %On note $\Omega$ l'ensemble des bureaux possibles tel que $\card{\Omega} = C_{20}^3 = 1140$.
+%   -On note $F$ l'\'ev\'enement, $\{\text{``une femme est dans le bureau''}\}$ et son compl\'ementaire $\bar{F}=\{\text{``Il n'y a pas de femme dans le bureau''} \}$.
+%   Le tirage de chaque candidat est ind\'ependant donc:
+%   $P(\bar{F}) = \frac{13}{20} \frac{12}{19} \frac{11}{18} = \frac{1716}{6840} \approx 0,25$.
+%   Donc $P(F) = 1 - P(\bar{F}) \approx 0,75$.\\
+%   -Autre solution: Il y a $A_{13}^3$ arrangements de 3 hommes, donc $P(\bar{F}) = \frac{A_{13}^3}{A_{20}^3} = \frac{\frac{13!}{(13-3)!}}{\frac{20!}{(20-3)!}}=\frac{13\times 12 \times 11}{20\times 19 \times 18}\approx 0,25$\\
+%   -Autre solution: On \'enum\`ere toutes les combinaisons (avec au moins 1F): 3F: $C_7^3$, 2F1M: $C_7^2 C_{13}^1$, 1F2M: $C_7^1C_{13}^2$, donc
+%   $P(F) = \frac{C_7^3 + (C_7^2C_{13}^1) + (C_7^1C_{13}^2)}{C_{20}^3} = \frac{854}{1140} \approx 0,75$.
+%   }
+%   \else
+%  \fi
+% \end{enumerate}
+% 
+% \exost 
+% Un sac contient 13 boules noires et 2 boules rouges. Combien faut il en tirer simultan\'ement
+% pour que la probabilit\'e d'obtenir au minimum une boule rouge soit sup\'erieure \`a $\frac{6}{7}$?
+% 
+% \ifcorrection
+%   \textcolor{red}{
+%   On note $x$ l'inconnue (le nombre de boules tir\'ees) et $\bar{A}$ l'\'ev\'enement compl\'ementaire $\{\text{``on ne tire aucune boule rouge''}\}$.
+%   On a $\card{\bar{A}} = C_{13}^x$ et $\card{\Omega} = C_{15}^x$.\\
+%   Il faut alors r\'esoudre l'in\'equation:
+%   $P(A) = 1 - \frac{C_{13}^x}{C_{15}^x} > \frac{6}{7}$.
+%   On a donc:
+%   \begin{align}
+%    \frac{1}{7} 			&> \frac{\frac{13!}{x!(13-x)!}}{\frac{15!}{x!(15-x)!}} = \frac{13!(15-x)!}{15!(13-x)!} = \frac{(15-x)(14-x)}{15\times 14}\\
+%    \frac{15 \times 14}{7}	&> x^2 - 29x + 210\\
+%    0 				&> x^2 - 29x + 180
+%   \end{align}
+%   On pose $\Delta = b^2 - 4 ac$ ($b=-29$, $a=1$ et $c=180$) donc $\Delta = 121 = 11^2$.\\
+%   On a donc (la plus petite solution) $x>\frac{-b-\sqrt{\Delta}}{2a} = \frac{29-11}{2} = 9$.\\
+%   L'autre solution $x_2>\frac{-b+\sqrt{\Delta}}{2a} = 20$ est bien plus grande que 9 mais sans int\'er\^et car on cherche le nombre
+%   minimum de tirage.
+%   }
+%   \else
+%  \fi
+%  
+\end{document}
+
+% End Of File
+

@@ -1,0 +1,184 @@
+\documentclass[a4paper, 9pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{24cm}
+\setlength{\topmargin}{-0.5cm}
+\setlength{\textwidth}{160mm}
+\setlength{\oddsidemargin}{1mm}
+
+%\renewcommand{\baselinestretch}{0.85}
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{D. Fourer, S. Cartier}
+\newcommand{\universityname}{IUT d'\'Evry Val d'Essonne}
+\newcommand{\deptname}{D\'epartement TC (S1)}
+\newcommand{\years}{2021-2022}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2021} 
+\TDHead{\universityname}{\deptname}{R1.02, Ressources et culture num\'eriques, \years}{\large TD1: Utilisation d'un syst\`eme d'information}
+%\TDHead{DUT TC}{}{\large TIC3: Fonctions avanc\'ees d'un tableur}
+%-------------------------------------------------------------------
+%\underline{Objectifs:} Ma\^itriser un logiciel de tableur
+
+\section{Mise en place de l'environnement de travail} %% 20 min
+
+Pour vous aider dans l'activation de votre compte num\'erique, vous pourrez consulter l'URL (Uniform Resource Locator): \url{https://www.univ-evry.fr/numerique.html}.
+%% import / export csv, maitrise des formats Libreoffice/Excel
+%% Mise en page dans l'environnement excel
+
+%% import d'un fichier csv:   donnee / import fichier txt
+\exost Dans votre espace personnel (lecteur r\'eseau not\'e Z dans cet exemple), cr\'eez l'arborescence: \verb? Z:\\RCN1\TP1 ?
+dans laquelle vous d\'eposerez le fichier correspondant au sujet \url{http://fourer.fr/Ens/2122/RCN1/td_rcn1.pdf}.
+(Pour les sujets suivants, vous ajouterez au fur et \`a mesure un sous-dossier \verb? TPx ? dans lequel vous d\'eposerez
+les fichiers correspondants.)
+
+\exost Activez votre compte UEVE en vous connectant \`a l'adresse suivante: \url{https://moncompte.univ-evry.fr/}
+Vous devrez vous munir de votre num\'ero \'etudiant remis au moment de votre inscription et il faudra choisir un
+mot de passe s\'ecuris\'e (plus de 8 caract\`eres avec au moins une majuscule et un symbole sp\'ecial).
+
+\exost Une fois votre compte UEVE actif, activez votre acc\`es E-campus en cochant la case \url{https://identiteutilisateur.fr/}.
+Pour cela, vous utiliserez l'acc\`es ``Universit\'e d'\'Evry Val d'Essonne V3''.
+
+%%
+\section{Utilisation des services num\'eriques de l'universit\'e}  %% 30 min
+
+\exost Connectez-vous \`a \url{https://edt.univ-evry.fr/} et utilisez votre num\'ero de groupe pour consulter votre emploi-du-temps
+\'etudiant au format \verb?IUT_TCJ_Fx1_Gy? dans lequel $x$ correspond \`a votre formation (I:initiale, A:alternance) et $y$ votre num\'ero
+de groupe de TD.
+
+\exost Connectez-vous sur \url{https://portal.office.com} ou sur \url{https://partage.univ-evry.fr} et acc\'edez \`a votre messagerie \'etudiante.
+Envoyez un e-mail contenant le sujet ``test'' en demandant un accus\'e de r\'eception depuis votre message \'etudiante vers votre messagerie personnelle.
+Connectez-vous ensuite sur votre messagerie personnelle et v\'erifiez que l'exp\'editeur correspond \`a:\\
+\verb?numero-etudiant@etud.univ-evry.fr?.
+Conservez bien pr\'ecieusement les acc\`es \`a votre messagerie qui vous suivra durant toute votre scolarit\'e \`a l'IUT d'\'Evry.
+
+\exost L'universit\'e fournit gratuitement \`a tous les \'etudiants un acc\`es \`a une licence office365.
+Sur la plateforme \url{https://office.com}, t\'el\'echargez l'installateur d'office365. Vous d\'eposerez ce dernier dans votre dossier personnel
+\verb? Z:\\RCN1\TP1 ?.
+
+
+\section{Utilisation efficace d'internet}
+
+\vspace{-0.5cm}
+\exost Envoyer un fichier volumineux (sup\'erieur \`a 3 Mo) n'est pas recommand\'e par e-mail car cela risque de saturer votre messagerie
+ainsi que celle de votre destinataire. Pour \'eviter cela il est recommand\'e de compresser et d'utiliser un service d'h\'ebergement
+interm\'ediaire permettant de communiquer une URL permettant au destinataire de t\'el\'echarger votre fichier. 
+\begin{itemize}
+ \item Compressez le fichier d'installation d'office365 r\'ecup\'er\'e au format zip
+ \item En utilisant le service \url{https://wetransfer.com/} ou \url{dl.free.fr}, convertissez en URL
+ le fichier .zip obtenu pr\'ec\'edemment
+ \item Envoyez-vous par e-mail l'URL g\'en\'er\'ee par wetransfer. Vous vous assurerez que le lien fonctionne et permet de r\'ecup\'erer votre archive.
+ %\item Chiffrez ce fichier via le clic-droit (propri\'et\'es/avanc\'e/)%https://www.ionos.fr/digitalguide/serveur/securite/chiffrer-un-fichier-zip/
+\end{itemize}
+
+\clearpage
+
+\exost En utilisant les moteurs de recherche ``Qwant'', ``Bind'' et ``Google'', r\'ecup\'erez des informations sur {\bf ``la 
+Netiquette'' }. Vous ferez une synth\`ese des informations r\'ecup\'er\'ee dans un document contenant du texte que vous ouvrirez
+avec Libreoffice writer ou Microsoft Word. 
+
+Votre document (entre 5 et 10 pages) devra respecter les consignes suivantes:
+
+\begin{itemize}
+ \item Contenir une page de garde avec un titre, votre identit\'e, la description de l'enseignement avec un logo de l'IUT
+ \item Contenir une table des mati\`ere avec la liste des sections
+ \item Le document devra comporter une introduction, une conclusion, ainsi qu'autant de section n\'ecessaire pour structurer le contenu.
+ \item Il contiendra au minimum 3 illustrations incorpor\'ees au texte comportant un num\'ero et un titre.
+\end{itemize}
+
+Vous prendrez soin de citer toutes les sources des informations recueillies dans une section ``r\'ef\'erences'' \`a la fin de votre document.
+En fin de s\'eance, Enregistrez votre document au format .docx et placez le dans votre dossier personnel \verb? Z:\\RCN1\TP1 ?.
+
+Vous v\'erifierez que votre document s'ouvre indiff\'eremment avec libreoffice et Microsoft Word.
+
+
+% \exost Ouvrez le fichier \verb? classe.csv ? avec un \'editeur de texte (e.g. Notepad). \`A quoi ce format
+% correspond-il? Quels sont les caract\`eres qui permettent de dissocier chaque champ de valeur?
+% 
+% \exost Ouvrez le fichier \verb? classe.csv ?  avec le logiciel tableur de votre choix (Libreoffice Calc ou Microsoft Excel)
+% et v\'erifiez que le contenu s'affiche correctement. Vous devrez d'abord d\'efinir le format du fichier csv permettant de dissocier 
+% chaque cellule (s\'eparateurs).
+% 
+% \exost Maintenant ouvrez le fichier \verb? coefficients.csv ? et importez son contenu dans une nouvelle feuille de calcul.
+% Vous prendrez le soin de donner un nom \`a chaque feuille de calcul (e.g. ``notes \'etudiants'' et ``coefficients des mati\`eres'').
+% 
+% \exost Effectuez un tri des lignes par ordre alphab\'etique des noms de famille. %(ordre lexicographique croissant)
+% Assurez vous que la premi\`ere ligne contenant les titres est inchang\'ee et que chaque nom conserve bien les informations correspondantes.
+% Vous pourrez comparer le r\'esultat obtenu avec le contenu du fichier csv d'origine.
+% 
+% \exost Mettez en page vos feuilles de calcul excel en ins\'erant des lignes de s\'eparations et en agrandissant les titres.
+% V\'erifiez le format de chaque cellule et en particulier les champs correspondant aux dates de naissance.
+% Figez la premi\`ere ligne contenant les titres des colonnes afin que celle-ci reste visible m\^eme lorsque l'\'ecran d\'efile vers le bas.
+% 
+% \exost Enregistrez votre travail dans un nouveau fichier \verb? classe.xlsx ?. Vous vous assurerez que le fichier porte bien l'extension
+% XLSX et qu'il contient bien l'ensemble des modifications effectu\'ees quand vous l'ouvrez avec Libreoffice Calc ou Microsoft Excel.
+% 
+% \exost Essayez d'ouvrir le m\^eme fichier avec Libreoffice Calc et avec Microsoft Excel. Remarquez vous des diff\'erences?
+% 
+% \clearpage
+% 
+% \section{Formules math\'ematiques} %%duree 30min, 1h maxi
+% 
+% \exost Ins\'erez une nouvelle colonne avant la colonne \verb? NOM ? que vous nommerez \verb? ID ? (identifiant).
+% Affectez un num\'ero distinct \`a chaque \'etudiant. Vous commencerez par affecter un nombre au premier \'etudiant
+% puis vous appliquerez la formule $=x+1$ \`a l'\'etudiant suivant ($x$ repr\'esente le code de la cellule associ\'e \`a l'ID pr\'ec\'edent).
+% En utilisant la fonction copier-coller, vous appliquerez cette formule \`a l'ensemble des \'etudiants.
+% 
+% \exost Ins\'erez une nouvelle colonne que vous appellerez \verb? AGE ?. En utilisant la fonction \verb?DATEDIF()?,
+% calculez l'age de chaque \'etudiant \`a partir de sa date de naissance. Si vous le souhaitez, vous pourrez utiliser la fonction
+% \verb?MAINTENANT()? qui retourne la date du jour.
+% 
+% \exost Ins\'erez une nouvelle colonne apr\`es la derni\`ere note que vous appellerez \verb? MOYENNE ?. 
+% Vous ins\'ererez la moyenne pour l'ensemble des mati\`eres de chaque \'el\`eve dans cette colonne en utilisant 
+% la fonction \verb? =MOYENNE(x:y) ? o\`u $x$ et $y$ sont respectivement les codes de la premi\`ere et de la derni\`ere 
+% cellule prise en compte dans le calcul.
+% 
+% %%duree 30min, 1h maxi
+% \exost Ajoutez une nouvelle colonne \verb? MEDIANE ? puis calculez la note m\'ediane pour chaque \'etudiant. 
+% Vous pourrez rechercher la fonction correspondante en utilisant l'assistant (bouton ``Fx'').
+% 
+% \exost Ajoutez une nouvelle colonne \verb? MOYENNE PONDEREE ? Pour cela vous impl\'ementerez la formule suivante:
+% 
+% \begin{equation}
+%  \bar{x} = \frac{\sum_i c_i x_i}{\sum_i c_i} = \frac{c_1 x_1 + c_2 x_2 + ...}{c_1 + c_2 + ...}
+% \end{equation}
+% 
+% o\`u les $c_i$ correspondent aux coefficients de chaque mati\`ere que vous r\'ecup\'ererez dans la seconde feuille de calcul et
+% les $x_i$ correspondent aux notes obtenues pour chaque mati\`ere $i$.
+% 
+% \exost Utilisez la fonction \verb? RANG() ? pour afficher le classement de chaque \'etudiant en fonction de sa moyenne pond\'er\'ee
+% dans une nouvelle colonne que vous ajouterez.
+% 
+% 
+% \exost Ajoutez une nouvelle ligne en bas de page que vous intitulerez: ``Total des effectifs''.
+% Vous calculerez pour l'ensemble des \'etudiants la moyenne, la moyenne pond\'er\'ee et la m\'ediane pour l'ensemble des effectifs.
+% Pour cela vous pourrez appliquer des formules matricielles pour l'ensemble des notes.
+% 
+% %\section{Graphiques et } %%duree 30min, 1h maxi
+% 
+% \textbf{BONUS:} Ins\'erez un graphique en permettant de visualiser la r\'epartition F/G, l'\^age et la r\'epartition des notes.
+
+\end{document}
+
+% End Of File
+
