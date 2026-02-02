@@ -1,0 +1,102 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage{entete}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{noitemsep}
+\usepackage{euscript} 
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{graphicx,graphics,epsfig,subfigure,color}
+\usepackage{url}
+%\usepackage{algorithm2e}
+\usepackage{multicol}
+\usepackage{a4wide}
+\usepackage{latexsym}
+\usepackage{verbatim}
+\setlength{\textheight}{23.6cm}
+\setlength{\topmargin}{-2cm}
+\setlength{\textwidth}{175mm}
+\setlength{\oddsidemargin}{1.5mm}
+\usepackage{pdfpages}
+%\renewcommand{\baselinestretch}{0.85}
+
+\pagenumbering{gobble}  %% remove page number
+
+%\input{macroAlgo}
+%\dontprintsemicolon
+
+\setlength{\parindent}{0pt}  %%suppression indentation
+
+\newif\ifcorrection
+\correctiontrue   %% With correction
+\correctionfalse   %% Reviewer's version
+
+
+\begin{document}
+\selectlanguage{francais}
+\author{L. Lagon, D. Fourer, S. Compagnon}
+\newcommand{\universityname}{IUT TCJ}
+\newcommand{\deptname}{RCN 1}
+\newcommand{\years}{2024-2025}
+
+%------------------- TITRE -----------------------------------------
+\date{Septembre 2021} 
+\TDHead{\universityname}{\deptname}{ \years}{\large TP Noté : RCN 1}
+
+\begin{itemize}
+    \item Le travail devra impérativement être envoyé en fin de séance à dominique.fourer@univ-evry.fr
+    \item 1 point porte sur la présentation et le respect des consignes 
+    \item Nous rappelons que l'utilisation d'IA dans le cadre de cet examen est interdite. La consultation des documentations Excel est cependant autorisée. 
+    \item L'ouverture de tout fichier Word ou Excel non relatif à l'examen entraînera la note de 0.
+\end{itemize}
+
+\section{Mettre en forme avec Word (5 points)}
+
+\textit{Dans cette partie de l'examen, le travail est à réaliser dans le fichier "Word.doc"}
+
+\begin{enumerate}
+    \item Affecter aux différentes parties (en gras) un style de titre 1. Affecter aux différentes sous-parties (en italique) un style de titre 2.
+    \item Définir le style titre 1 en gras, taille 14, souligné et assigner lui une couleur au choix. Numéroter en chiffre.
+    \item Définir le style titre 2 en gras, taille 12, avec un autre couleur au choix. Lui ajouter un retrait vers la gauche. Numéroter en lettres.
+    \item Ajouter des numéros de pages centrés 
+    \item Insérer un sommaire automatique
+\end{enumerate}
+
+\section{Automatiser avec Excel (14 points)}
+\textit{Dans cette partie de l'examen, le travail est à réaliser dans le fichier "Word.doc"}
+
+Vous êtes chargé de calculer les salaires des différents employés de votre entreprise. Vous disposez des données suivantes :
+
+\begin{itemize}[itemsep=0.1cm]
+    \item L'employé dispose d'un \textbf{fixe} de 800 €
+    \item Une \textbf{prime de fidélisation} représentant 20 € par années passées dans l'entreprise est accordée. Par exemple, si une personne à 10 ans d'ancienneté, elle reçoit 200€ de prime de fidélisation.
+    \item Une \textbf{commission} représentant 1,5\% du chiffre d'affaire est accordée.
+    \item Une \textbf{prime compétitivité} de 10 000 € est à partager aux employés au pro-rata de leur participation au CA. Par exemple, si un vendeur totalise 5\% des ventes du mois, il touchera 5\% de 10 000 €. 
+    \item Une \textbf{prime d'assiduité} de 50 € si l'employé a moins de 7 jours d'absences et qu'il a un CA supérieur à 5000 €. 
+\end{itemize}
+
+\newpage
+
+\begin{enumerate}[itemsep=0.1cm]
+    \item (1 point) Pour chacun des salarié, ajouter un salaire fixe de 800 €.
+    \item (2 points) A l'aide de la fonction DATEDIF, afficher dans une colonne le nombre d'années qu'un employé à passé dans l'entreprise. Puis, calculer le montant de sa prime de fidélisation.
+    \item (2 point) Calculer la commission versée à chaque vendeur.
+    \item (3 points) Calculer le total du CA du mois réalisé par la totalité des vendeur. Puis, calculer le \% des ventes totales réalisé par chaque vendeur. Enfin, calculer la prime compétitivité. \textbf{Remarque :} Il est tout à fait possible de réaliser ces 2 dernières opérations sur une seule colonne. 
+    \item (2 points) Dans une colonne, afficher "Trop de retards" si le vendeur cumule plus de 7 jours de retard. Puis, à l'aide d'une mise en forme conditionnelle, afficher cette cellule en rouge.
+    \item (2 points) Calculer la prime d'assiduité 
+    \item (2 points) Calculer le salaire total des vendeurs 
+\end{enumerate}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{image.png}
+    \caption{Exemple de réalisation (Disponible en PJ)}
+    \label{fig:enter-label}
+\end{figure}
+\end{document}
+
+
+
+% End Of File
+
