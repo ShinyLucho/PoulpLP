@@ -1,0 +1,148 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Physique-Chimie · 3ᵉ Prépa-Métiers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root{--bg:#F3F6F8;--surface:#FFFFFF;--ink:#13243C;--ink-soft:#5A6B80;--line:#E2E8EF;
+    --blue:#1763B0;--cyan:#0E9BBE;--amber:#E07B2C;--navy:#0E2036;
+    --shadow:0 1px 2px rgba(19,36,60,.05),0 12px 28px -16px rgba(19,36,60,.22);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;--mono:"Space Mono",ui-monospace,monospace}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  a{color:inherit}
+  .hero{background:var(--navy);color:#EAF1F8;padding:60px 0 52px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 85% 0%,rgba(224,123,44,.16),transparent 55%),radial-gradient(120% 90% at 0% 100%,rgba(14,155,190,.18),transparent 55%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:#8FB6D6;margin:0 0 16px}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(32px,5.4vw,54px);line-height:1.03;letter-spacing:-.02em;margin:0;color:#fff}
+  .hero h1 em{font-style:normal;color:var(--amber)}
+  .hero p.lead{max-width:46ch;color:#B9CADD;font-size:17px;margin:18px 0 0}
+  .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:#8FB6D6;text-decoration:none;margin:0 0 18px}
+  .back:hover{color:#cfe0ef}
+  .states{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+  .state{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.10);border-radius:14px;padding:12px 12px 10px}
+  .state canvas{display:block;width:100%;height:92px}
+  .state .name{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#9FBFD9;margin-top:8px;display:flex;justify-content:space-between;align-items:center}
+  .state .dot{width:7px;height:7px;border-radius:50%}
+  .s-sol .dot{background:#7FD4E6}.s-liq .dot{background:#5AA6E0}.s-gaz .dot{background:#F2A04D}
+  main{padding:50px 0 30px}
+  .theme{margin-bottom:42px}
+  .theme-label{font-family:var(--mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 18px;display:flex;align-items:center;gap:12px}
+  .theme-label::after{content:"";height:1px;flex:1;background:var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .mod{display:flex;gap:18px;align-items:center;text-decoration:none;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px 22px;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .mod:hover{transform:translateY(-2px);border-color:#CFE0EF;box-shadow:0 1px 2px rgba(19,36,60,.05),0 22px 40px -20px rgba(19,36,60,.32)}
+  .mod .num{font-family:var(--display);font-weight:700;font-size:26px;line-height:1;color:var(--blue);width:50px;height:50px;flex:none;display:grid;place-items:center;border-radius:12px;background:#EAF3FB}
+  .mod h3{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:-.01em;margin:0 0 3px}
+  .mod p{margin:0;color:var(--ink-soft);font-size:13px;font-family:var(--mono);letter-spacing:.04em}
+  .mod .arrow{margin-left:auto;color:var(--blue);flex:none}
+  .list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;padding:22px 24px;transition:transform .18s,box-shadow .18s,border-color .18s}
+  .card:hover{transform:translateY(-2px);border-color:#CFE0EF;box-shadow:0 1px 2px rgba(19,36,60,.05),0 22px 40px -20px rgba(19,36,60,.32)}
+  .card .num{font-family:var(--display);font-weight:700;font-size:30px;line-height:1;color:var(--blue);width:54px;height:54px;display:grid;place-items:center;border-radius:12px;background:#EAF3FB}
+  .card-body h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.01em;margin:0 0 4px}
+  .card-body p{margin:0 0 8px;color:var(--ink-soft);font-size:15px}
+  .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--ink-soft);display:flex;gap:14px;flex-wrap:wrap}
+  .meta b{color:var(--ink);font-weight:700}
+  .dl{text-decoration:none;white-space:nowrap;font-family:var(--body);font-weight:600;font-size:15px;color:#fff;background:var(--blue);border:0;border-radius:11px;padding:13px 20px;display:inline-flex;align-items:center;gap:10px;transition:background .16s}
+  .dl:hover{background:#12539a}.dl:active{transform:translateY(1px)}
+  .dl:focus-visible,.mod:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  footer{border-top:1px solid var(--line);margin-top:30px;padding:26px 0 46px;color:var(--ink-soft);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .maj{font-family:var(--mono);font-size:12px;letter-spacing:.04em}
+  @media(max-width:680px){.grid{grid-template-columns:1fr}.states{grid-template-columns:1fr}.card{grid-template-columns:auto 1fr;gap:14px 16px;padding:18px}.card .num{width:46px;height:46px;font-size:24px}.card .dl{grid-column:1/-1;justify-content:center}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head><body>
+<header class="hero"><div class="wrap">
+    <p class="eyebrow">Physique-Chimie · 3ᵉ Prépa-Métiers</p>
+    <h1>Le programme en <em>10 modules</em></h1>
+    <p class="lead">Choisis un module, puis télécharge la fiche de la séance. Chaque fiche s’ouvre dans Word.</p>
+    <div class="states" aria-hidden="true">
+      <div class="state s-sol"><canvas data-mode="solide"></canvas><div class="name"><span>Solide</span><span class="dot"></span></div></div>
+      <div class="state s-liq"><canvas data-mode="liquide"></canvas><div class="name"><span>Liquide</span><span class="dot"></span></div></div>
+      <div class="state s-gaz"><canvas data-mode="gaz"></canvas><div class="name"><span>Gaz</span><span class="dot"></span></div></div>
+    </div></div></header>
+<main><div class="wrap">
+  <section class="theme">
+    <p class="theme-label">Organisation et transformations de la matière</p>
+    <div class="grid">
+      <a class="mod" href="module-1.html">
+        <span class="num">01</span>
+        <span><h3>États et changements d’état</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-2.html">
+        <span class="num">02</span>
+        <span><h3>Mélanges</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-3.html">
+        <span class="num">03</span>
+        <span><h3>Des atomes à l’Univers</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-4.html">
+        <span class="num">04</span>
+        <span><h3>Transformations chimiques</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-5.html">
+        <span class="num">05</span>
+        <span><h3>Acides et bases</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="theme">
+    <p class="theme-label">L’énergie et ses conversions</p>
+    <div class="grid">
+      <a class="mod" href="module-6.html">
+        <span class="num">06</span>
+        <span><h3>L’énergie et ses conversions</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-7.html">
+        <span class="num">07</span>
+        <span><h3>Circuits électriques et lois de l’électricité</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="theme">
+    <p class="theme-label">Mouvement et interactions</p>
+    <div class="grid">
+      <a class="mod" href="module-8.html">
+        <span class="num">08</span>
+        <span><h3>Mouvement et vitesse</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="mod" href="module-9.html">
+        <span class="num">09</span>
+        <span><h3>Interactions et forces</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+  <section class="theme">
+    <p class="theme-label">Des signaux pour observer et communiquer</p>
+    <div class="grid">
+      <a class="mod" href="module-10.html">
+        <span class="num">10</span>
+        <span><h3>Signaux lumineux et sonores</h3><p>3 séances</p></span><svg class="arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h11m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+  </div></main>
+<footer><div class="wrap"><span>Physique-Chimie · Cycle 4 · 3ᵉ Prépa-Métiers</span><span class="maj">Mis à jour : juin 2026</span></div></footer>
+<script>
+(function(){var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var C={solide:'#7FD4E6',liquide:'#5AA6E0',gaz:'#F2A04D'};
+function field(canvas){var mode=canvas.getAttribute('data-mode'),ctx=canvas.getContext('2d'),W=0,H=0,parts=[],dpr=Math.min(window.devicePixelRatio||1,2);
+function resize(){var r=canvas.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);init();}
+function init(){parts=[];if(mode==='solide'){var cols=6,rows=4,mx=W*0.16,my=H*0.20,gx=(W-2*mx)/(cols-1),gy=(H-2*my)/(rows-1);for(var i=0;i<cols;i++)for(var j=0;j<rows;j++)parts.push({hx:mx+i*gx,hy:my+j*gy,ph:Math.random()*6.28});}
+else if(mode==='liquide'){for(var k=0;k<18;k++)parts.push({x:Math.random()*W,y:H*0.35+Math.random()*H*0.6,vx:(Math.random()-.5)*0.35,vy:(Math.random()-.5)*0.35});}
+else{for(var g=0;g<9;g++)parts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*1.7,vy:(Math.random()-.5)*1.7});}}
+function draw(time){ctx.clearRect(0,0,W,H);ctx.fillStyle=C[mode];var r=mode==='gaz'?3.2:3.0;
+for(var n=0;n<parts.length;n++){var p=parts[n],x,y;
+if(mode==='solide'){x=p.hx+Math.cos(time/700+p.ph)*1.6;y=p.hy+Math.sin(time/620+p.ph)*1.6;}
+else if(mode==='liquide'){p.x+=p.vx;p.y+=p.vy;if(p.x<4||p.x>W-4)p.vx*=-1;if(p.y<H*0.30||p.y>H-4)p.vy*=-1;p.vx+=(Math.random()-.5)*0.04;p.vy+=(Math.random()-.5)*0.04;p.vx=Math.max(-.6,Math.min(.6,p.vx));p.vy=Math.max(-.6,Math.min(.6,p.vy));x=p.x;y=p.y;}
+else{p.x+=p.vx;p.y+=p.vy;if(p.x<4||p.x>W-4)p.vx*=-1;if(p.y<4||p.y>H-4)p.vy*=-1;x=p.x;y=p.y;}
+ctx.beginPath();ctx.arc(x,y,r,0,6.2832);ctx.fill();}
+if(!reduce)requestAnimationFrame(draw);}
+resize();window.addEventListener('resize',resize);if(reduce){draw(0);}else{requestAnimationFrame(draw);}}
+document.querySelectorAll('.state canvas').forEach(field);})();
+</script>
+</body></html>
